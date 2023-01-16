@@ -44,11 +44,11 @@ def main():
     line = input("Введите стороны треугольника: ")
     line = str.split(line, sep=" ")
 
-    if len(line) < 3:
+    try:
+        print(get_triangle_type(line[0], line[1], line[2]))
+    except IndexError:
         print("Недостаточно сторон")
         main()
-    else:
-        print(get_triangle_type(line[0], line[1], line[2]))
 
 
 if __name__ == "__main__":
