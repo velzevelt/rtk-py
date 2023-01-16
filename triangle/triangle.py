@@ -11,11 +11,11 @@ class TriangleTypes(Enum):
 def get_triangle_type(a = None, b = None, c = None):
     result = 'Неизвестный треугольник'
 
-    if any((a, b, c)) is None:
+    if any(elem is None for elem in (a, b, c)):
         warn("Недостаточно сторон")
         return result
 
-    if any((a, b, c)) <= 0:
+    if any(elem <= 0 for elem in (a, b, c)):
         warn("Треугольника с отрицательными или нулевыми сторонами не существует")
         return result
 
@@ -57,6 +57,5 @@ if __name__ == "__main__":
 
     )
 
-    print(get_triangle_type(1, 1))
-    # for val in data:
-    #     print(get_triangle_type(val[0], val[1], val[2]))
+    for val in data:
+        print(get_triangle_type(val[0], val[1], val[2]))
