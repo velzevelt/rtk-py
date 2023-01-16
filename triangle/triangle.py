@@ -8,7 +8,7 @@ class TriangleType(Enum):
     VERSATILE = "Разносторонний"
 
 
-def get_triangle_type(a: int = None, b: int = None, c: int = None):
+def get_triangle_type(a: int = None, b: int = None, c: int = None) -> str:
     result = 'Треугольник не существует'
 
     if a is None or b is None or c is None:
