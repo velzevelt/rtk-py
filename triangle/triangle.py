@@ -8,14 +8,22 @@ class TriangleTypes(Enum):
     VERSATILE = "Разносторонний"
 
 
-def get_triangle_type(a = None, b = None, c = None):
+def get_triangle_type(a=None, b=None, c=None):
     result = 'Неизвестный треугольник'
 
-    if any(elem is None for elem in (a, b, c)):
+    if a is None or b is None or c is None:
         warn("Недостаточно сторон")
         return result
 
-    if any(elem <= 0 for elem in (a, b, c)):
+    try:
+        a = int(a)
+        b = int(b)
+        c = int(c)
+    except ValueError:
+        warn("Некорректные входные данные")
+        return result
+
+    if a <= 0 or b <= 0 or c <= 0:
         warn("Треугольника с отрицательными или нулевыми сторонами не существует")
         return result
 
@@ -38,24 +46,11 @@ def main():
 
     sides = []
     for number in line:
-        try:
-            sides.append(int(number))
-        except ValueError:
-            warn("Некоррентый тип в исходных данных")
+        if number.isnumeric():
+            sides.append(number)
 
     print(get_triangle_type(line[0], line[1], line[2]))
 
 
 if __name__ == "__main__":
-    # main()
-    data = (
-
-        (1, 1, 1),
-        (1, 1),
-        (2, 2, 2),
-        (0, 0, 0)
-
-    )
-
-    for val in data:
-        print(get_triangle_type(val[0], val[1], val[2]))
+    main()
