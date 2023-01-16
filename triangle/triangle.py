@@ -2,7 +2,7 @@ from enum import Enum
 from warnings import warn
 
 
-class TriangleTypes(Enum):
+class TriangleType(Enum):
     ISOSCELES = "Равнобедренный"
     EQUILATERAL = "Равносторонний"
     VERSATILE = "Разносторонний"
@@ -29,11 +29,11 @@ def get_triangle_type(a: int = None, b: int = None, c: int = None):
 
     if (a < b + c) and (b < a + c) and (c < a + b):
         if a == b == c:
-            result = TriangleTypes.EQUILATERAL.value
+            result = TriangleType.EQUILATERAL.value
         elif a == b or a == c or b == c:  # * 3 сторона не может быть равной из-за предыдущего условия
-            result = TriangleTypes.ISOSCELES.value
+            result = TriangleType.ISOSCELES.value
         else:
-            result = TriangleTypes.VERSATILE.value
+            result = TriangleType.VERSATILE.value
     else:
         warn("Треугольник с такими сторонами не существует")
 
