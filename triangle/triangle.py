@@ -57,5 +57,4 @@ if __name__ == "__main__":
         )
     
     for val in data:
-        triangle = val
-        print(triangle)
+        print(get_triangle_type(val[0], val[1], val[2]))        
