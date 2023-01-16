@@ -19,7 +19,7 @@ def get_triangle_type(a: int, b: int, c: int) -> str:
     if (a < b + c) and (b < a + c) and (c < a + b):
         if a == b == c:
             result = TriangleTypes.EQUILATERAL.value
-        elif a == b or a == c or b == c: #* 3 сторона не может быть равной из-за предыдущего условия
+        elif a == b or a == c or b == c:  # * 3 сторона не может быть равной из-за предыдущего условия
             result = TriangleTypes.ISOSCELES.value
         else:
             result = TriangleTypes.VERSATILE.value
@@ -33,19 +33,18 @@ def main():
     sides = input("Введите стороны треугольника: ")
     sides = str.split(sides, sep=" ")
 
-    for number in sides:
+    for key, number in enumerate(sides):
         if number.isnumeric():
-            sides[number] = int(number)
+            sides[key] = int(number)
         else:
             sides.remove(number)
             warnings.warn("Неверный тип стороны")
-    if len(sides) < 3:
-        pass
 
+    if len(sides) < 3:
+        raise TooFewSidesError
 
     print(sides)
-
-    #print(get_triangle_type(4, 4, 4))
+    # print(get_triangle_type(sides[0], sides[1], sides[2]))
 
 
 if __name__ == "__main__":
