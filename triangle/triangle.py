@@ -14,19 +14,19 @@ def get_triangle_type(a: int, b: int, c: int):
     if any(a, b, c) is None:
         warn("Недостаточно сторон")
         return result
-
-    if any(a, b, c) <= 0:
+    elif any(a, b, c) <= 0:
         warn("Треугольника с отрицательными или нулевыми сторонами не существует")
-    else:
-        if (a < b + c) and (b < a + c) and (c < a + b):
-            if a == b == c:
-                result = TriangleTypes.EQUILATERAL.value
-            elif a == b or a == c or b == c:  # * 3 сторона не может быть равной из-за предыдущего условия
-                result = TriangleTypes.ISOSCELES.value
-            else:
-                result = TriangleTypes.VERSATILE.value
+        return result
+    
+    if (a < b + c) and (b < a + c) and (c < a + b):
+        if a == b == c:
+            result = TriangleTypes.EQUILATERAL.value
+        elif a == b or a == c or b == c:  # * 3 сторона не может быть равной из-за предыдущего условия
+            result = TriangleTypes.ISOSCELES.value
         else:
-            warn("Треугольника с такими сторонами не существует")
+            result = TriangleTypes.VERSATILE.value
+    else:
+        warn("Треугольника с такими сторонами не существует")
 
     return result
 
