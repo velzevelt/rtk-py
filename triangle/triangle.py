@@ -30,21 +30,21 @@ def get_triangle_type(a: int, b: int, c: int) -> str:
 
 
 def main():
-    sides = input("Введите стороны треугольника: ")
-    sides = str.split(sides, sep=" ")
+    line = input("Введите стороны треугольника: ")
+    line = str.split(line, sep=" ")
 
-    for key, number in enumerate(sides):
-        if number.isnumeric():
-            sides[key] = int(number)
-        else:
-            sides.remove(number)
-            warnings.warn("Неверный тип стороны")
+    sides = []
+    for number in line:
+        try:
+            sides.append(int(number))
+        except ValueError:
+            warnings.warn("Некоррентый тип в исходных данных")
 
     if len(sides) < 3:
         raise TooFewSidesError
 
-    print(sides)
-    # print(get_triangle_type(sides[0], sides[1], sides[2]))
+ 
+    # print(get_triangle_type(line[0], line[1], line[2]))
 
 
 if __name__ == "__main__":
