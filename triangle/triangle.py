@@ -43,9 +43,19 @@ def main():
     if len(sides) < 3:
         raise TooFewSidesError
 
- 
-    # print(get_triangle_type(line[0], line[1], line[2]))
+    # print(sides)
+    print(get_triangle_type(line[0], line[1], line[2]))
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    data = ( 
+        
+        (1, 1, 1), 
+        (2, 2, 2) 
+        
+        )
+    
+    for val in data:
+        triangle = val
+        print(triangle)
