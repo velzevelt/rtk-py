@@ -8,7 +8,7 @@ class TriangleTypes(Enum):
     VERSATILE = "Разносторонний"
 
 
-def get_triangle_type(a=None, b=None, c=None):
+def get_triangle_type(a: int = None, b: int = None, c: int = None):
     result = 'Треугольник не существует'
 
     if a is None or b is None or c is None:
@@ -44,7 +44,11 @@ def main():
     line = input("Введите стороны треугольника: ")
     line = str.split(line, sep=" ")
 
-    print(get_triangle_type(line[0], line[1], line[2]))
+    if len(line) < 3:
+        print("Недостаточно сторон")
+        main()
+    else:
+        print(get_triangle_type(line[0], line[1], line[2]))
 
 
 if __name__ == "__main__":
