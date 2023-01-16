@@ -39,6 +39,9 @@ def main():
         else:
             sides.remove(number)
             warnings.warn("Неверный тип стороны")
+    if len(sides) < 3:
+        pass
+
 
     print(sides)
 
