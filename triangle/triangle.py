@@ -8,10 +8,10 @@ class TriangleTypes(Enum):
     VERSATILE = "Разносторонний"
 
 
-def get_triangle_type(a: int, b: int, c: int):
+def get_triangle_type(a = None, b = None, c = None):
     result = 'Неизвестный треугольник'
 
-    if a is None or b is None or c is None:
+    if any((a, b, c)) is None:
         warn("Недостаточно сторон")
         return result
 
@@ -57,5 +57,6 @@ if __name__ == "__main__":
 
     )
 
-    for val in data:
-        print(get_triangle_type(val[0], val[1], val[2]))
+    print(get_triangle_type(1, 1))
+    # for val in data:
+    #     print(get_triangle_type(val[0], val[1], val[2]))
