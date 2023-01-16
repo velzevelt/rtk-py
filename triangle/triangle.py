@@ -8,12 +8,10 @@ class TriangleType(Enum):
     VERSATILE = "Разносторонний"
 
 
-def get_triangle_type(a: int = None, b: int = None, c: int = None) -> str:
-    result = 'Треугольник не существует'
-
+def get_triangle_type(a: int = None, b: int = None, c: int = None):
     if a is None or b is None or c is None:
         warn("Недостаточно сторон")
-        return result
+        return False
 
     try:
         a = int(a)
@@ -21,21 +19,23 @@ def get_triangle_type(a: int = None, b: int = None, c: int = None) -> str:
         c = int(c)
     except ValueError:
         warn("Некорректные входные данные")
-        return result
+        return False
 
     if a <= 0 or b <= 0 or c <= 0:
         warn("Треугольник с отрицательными или нулевыми сторонами не существует")
-        return result
+        return False
 
-    if (a < b + c) and (b < a + c) and (c < a + b):
-        if a == b == c:
-            result = TriangleType.EQUILATERAL.value
-        elif a == b or a == c or b == c:  # * 3 сторона не может быть равной из-за предыдущего условия
-            result = TriangleType.ISOSCELES.value
-        else:
-            result = TriangleType.VERSATILE.value
+    triangle_exist = (a < b + c) and (b < a + c) and (c < a + b)
+    if not triangle_exist:
+        warn(("Треугольник с такими сторонами не существует"))
+        return False
+
+    if a == b == c:
+        result = TriangleType.EQUILATERAL.value
+    elif a == b or a == c or b == c:
+        result = TriangleType.ISOSCELES.value
     else:
-        warn("Треугольник с такими сторонами не существует")
+        result = TriangleType.VERSATILE.value
 
     return result
 
