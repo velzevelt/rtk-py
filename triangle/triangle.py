@@ -1,5 +1,6 @@
 from triangle_exceptions import *
 from enum import Enum
+import warnings
 
 
 class TriangleTypes(Enum):
@@ -18,7 +19,7 @@ def get_triangle_type(a: int, b: int, c: int) -> str:
     if (a < b + c) and (b < a + c) and (c < a + b):
         if a == b == c:
             result = TriangleTypes.EQUILATERAL.value
-        elif a == b or a == c or b == c:
+        elif a == b or a == c or b == c: #* 3 сторона не может быть равной из-за предыдущего условия
             result = TriangleTypes.ISOSCELES.value
         else:
             result = TriangleTypes.VERSATILE.value
@@ -30,7 +31,18 @@ def get_triangle_type(a: int, b: int, c: int) -> str:
 
 def main():
     sides = input("Введите стороны треугольника: ")
-    print(get_triangle_type(4, 4, 4))
+    sides = str.split(sides, sep=" ")
+
+    for number in sides:
+        if number.isnumeric():
+            sides[number] = int(number)
+        else:
+            sides.remove(number)
+            warnings.warn("Неверный тип стороны")
+
+    print(sides)
+
+    #print(get_triangle_type(4, 4, 4))
 
 
 if __name__ == "__main__":

@@ -10,3 +10,5 @@ class NonExistingTriangleError(Exception):
             return self.message
         else:
             return 'Треугольника с такими сторонами не существует'
+
+
