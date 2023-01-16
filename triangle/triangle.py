@@ -11,13 +11,14 @@ class TriangleTypes(Enum):
 def get_triangle_type(a: int, b: int, c: int):
     result = 'Неизвестный треугольник'
 
-    if any(a, b, c) is None:
+    if a is None or b is None or c is None:
         warn("Недостаточно сторон")
         return result
-    elif any(a, b, c) <= 0:
+
+    if any((a, b, c)) <= 0:
         warn("Треугольника с отрицательными или нулевыми сторонами не существует")
         return result
-    
+
     if (a < b + c) and (b < a + c) and (c < a + b):
         if a == b == c:
             result = TriangleTypes.EQUILATERAL.value
@@ -42,20 +43,19 @@ def main():
         except ValueError:
             warn("Некоррентый тип в исходных данных")
 
-    
     print(get_triangle_type(line[0], line[1], line[2]))
 
 
 if __name__ == "__main__":
     # main()
-    data = ( 
-        
+    data = (
+
         (1, 1, 1),
-        (1, 1), 
+        (1, 1),
         (2, 2, 2),
-        (0, 0, 0) 
-        
-        )
-    
+        (0, 0, 0)
+
+    )
+
     for val in data:
-        print(get_triangle_type(val[0], val[1], val[2]))        
+        print(get_triangle_type(val[0], val[1], val[2]))
