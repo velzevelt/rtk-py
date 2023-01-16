@@ -9,7 +9,7 @@ class TriangleTypes(Enum):
 
 
 def get_triangle_type(a=None, b=None, c=None):
-    result = 'Неизвестный треугольник'
+    result = 'Треугольник не существует'
 
     if a is None or b is None or c is None:
         warn("Недостаточно сторон")
@@ -24,7 +24,7 @@ def get_triangle_type(a=None, b=None, c=None):
         return result
 
     if a <= 0 or b <= 0 or c <= 0:
-        warn("Треугольника с отрицательными или нулевыми сторонами не существует")
+        warn("Треугольник с отрицательными или нулевыми сторонами не существует")
         return result
 
     if (a < b + c) and (b < a + c) and (c < a + b):
@@ -35,7 +35,7 @@ def get_triangle_type(a=None, b=None, c=None):
         else:
             result = TriangleTypes.VERSATILE.value
     else:
-        warn("Треугольника с такими сторонами не существует")
+        warn("Треугольник с такими сторонами не существует")
 
     return result
 
@@ -43,11 +43,6 @@ def get_triangle_type(a=None, b=None, c=None):
 def main():
     line = input("Введите стороны треугольника: ")
     line = str.split(line, sep=" ")
-
-    sides = []
-    for number in line:
-        if number.isnumeric():
-            sides.append(number)
 
     print(get_triangle_type(line[0], line[1], line[2]))
 

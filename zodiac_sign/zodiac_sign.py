@@ -35,7 +35,7 @@ class MyDate:
     
     
     def get_sign(self):
-        result = "Знак не найден"
+        result = "Неизвестный знак"
         
         # [0] день_начало
         # [1] месяц_начало
