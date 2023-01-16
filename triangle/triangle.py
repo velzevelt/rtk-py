@@ -9,6 +9,11 @@ class TriangleType(Enum):
 
 
 def get_triangle_type(a: int = None, b: int = None, c: int = None):
+    '''
+    Определяет тип треугольника по трем сторонам. 
+    Возвращает False, если не удается определить тип
+    '''
+
     if a is None or b is None or c is None:
         warn("Недостаточно сторон")
         return False
@@ -27,7 +32,7 @@ def get_triangle_type(a: int = None, b: int = None, c: int = None):
 
     triangle_exist = (a < b + c) and (b < a + c) and (c < a + b)
     if not triangle_exist:
-        warn(("Треугольник с такими сторонами не существует"))
+        warn("Треугольник с такими сторонами не существует")
         return False
 
     if a == b == c:
