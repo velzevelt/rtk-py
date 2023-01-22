@@ -25,9 +25,7 @@ def main():
     except ValueError:
         print("Число не распознано")
         main()
-    except Exception:
-        print("Неизвестная ошибка")
-        main()
+
 
 
 if __name__ == "__main__":
