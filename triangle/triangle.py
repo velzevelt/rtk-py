@@ -26,13 +26,13 @@ def get_triangle_type(a: int = None, b: int = None, c: int = None):
         warn("Некорректные входные данные")
         return False
 
+    # Треугольник с отрицательными или нулевыми сторонами не существует
     if a <= 0 or b <= 0 or c <= 0:
-        warn("Треугольник с отрицательными или нулевыми сторонами не существует")
         return False
 
+    # Треугольник с такими сторонами не существует
     triangle_exist = (a < b + c) and (b < a + c) and (c < a + b)
     if not triangle_exist:
-        warn("Треугольник с такими сторонами не существует")
         return False
 
     if a == b == c:
