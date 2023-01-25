@@ -33,6 +33,8 @@ def main():
         return False
 
     def has_won():
+        print("Вы решили задачу")
+        print("Игра завершена")
         return len(finish_side) == 3
 
     def make_move(first_side, second_side) -> None:
@@ -51,16 +53,12 @@ def main():
         if has_loosed(start_side):
             break
         if has_won():
-            print("Вы решили задачу")
-            print("Игра завершена")
             break
 
         make_move(finish_side, start_side)
         if has_loosed(finish_side):
             break
         if has_won():
-            print("Вы решили задачу")
-            print("Игра завершена")
             break
 
     
