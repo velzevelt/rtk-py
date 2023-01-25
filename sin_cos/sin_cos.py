@@ -8,10 +8,12 @@ def y(x):
 
 try:
     h = int(input("Шаг функции: "))
+    steps = int(input("Число шагов: "))
+    steps = abs(steps)
     h = abs(h)
 except ValueError:
     h = 1
 
 
-for x in range(0, 10, h):
+for x in range(0, steps, h):
     print(f'[{x}, {y(x)}]')
