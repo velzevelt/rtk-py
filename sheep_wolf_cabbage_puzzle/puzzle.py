@@ -46,6 +46,16 @@ def main():
             transfer = get_names(first_side)[transfer]
             sail_entity(transfer, first_side, second_side)
 
+    '''
+    Победа достигается комбинацией:
+        Овца
+        Пропуск
+        Капуста
+        Овца
+        Волк
+        Пропуск
+        Овца
+    '''
     while True:
         make_move(start_side, finish_side)
         if has_loosed(start_side):
