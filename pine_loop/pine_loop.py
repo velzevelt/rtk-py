@@ -31,7 +31,7 @@ def main():
     try:
         # draw_char = str(input("Введите символ елки: "))
         # height = int(input("Введите высоту елки: "))
-        # print(draw_pine("8", 16, outline_only=False))
+        print(draw_pine("8", 16, outline_only=False))
         print(draw_pine("8", 16, outline_only=True))
 
     except ValueError:
