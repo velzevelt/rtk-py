@@ -11,7 +11,6 @@ def main():
     def make_move(active_player):
         pass
 
-
     def can_move(active_player):
         pass
 
@@ -19,10 +18,10 @@ def main():
         box = [Orange() for i in range(n)]
         return box
 
-    cb = Cheburashka()
+    cheburashka = Cheburashka()
     gena = Gena()
     n = int(input("Сколько апельсинов изначально? "))
     box = create_box(n)
 
-    while can_move(cb) or can_move(gena):
+    while can_move(cheburashka) or can_move(gena):
         pass
