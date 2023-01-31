@@ -1,27 +1,63 @@
 def main():
-    class Cheburashka:
-        pass
+    from abc import ABC, abstractmethod
 
-    class Gena:
-        pass
+    class Actor(ABC):
+        def __init__(self, play_area):
+            self.play_area = play_area
+
+        @abstractmethod
+        def can_move(self):
+            pass
+
+        @abstractmethod
+        def make_move(self):
+            pass
+
+    class Cheburashka(Actor):
+        actions = [
+            "Cъесть два",
+            "Съесть один, выкинуть гнилой"
+        ]
+        def can_move(self):
+            ...
+
+        def make_move(self, action="Съесть два"):
+            ...
+
+    class Shapka(Actor):
+        def can_move(self):
+            ...
+
+        def make_move(self):
+            ...
 
     class Orange:
         rotten = False
 
-    def make_move(active_player):
-        pass
+    class Box:
+        area = []
+        good_count = 0
 
-    def can_move(active_player):
-        pass
+        def __init__(self, n):
+            self.area = [Orange() for i in range(n)]
+            self.good_count = len(self.area)
 
-    def create_box(n) -> list:
-        box = [Orange() for i in range(n)]
-        return box
+        def pick_good_orange(self):
+            for orange in self.area:
+                if orange.rotten:
+                    continue
+                else:
+                    return orange
 
-    cheburashka = Cheburashka()
-    gena = Gena()
+
+
     n = int(input("Сколько апельсинов изначально? "))
-    box = create_box(n)
+    box = Box(n)
+    # cheburashka = Cheburashka(box)
+    # Shapka = Shapka(box)
 
-    while can_move(cheburashka) or can_move(gena):
-        pass
+    # while cheburashka.can_move() and Shapka.can_move():
+    #     pass
+
+
+main()
