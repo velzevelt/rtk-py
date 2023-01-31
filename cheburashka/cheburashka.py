@@ -14,7 +14,7 @@ def main():
 
         @abstractmethod
         def show_actions(self):
-            pass
+            message = "Я могу:\n"
 
     class Cheburashka(Actor):
 
@@ -22,7 +22,9 @@ def main():
             ...
 
         def show_actions(self):
-            message = ""
+            message = super
+            message += "1) Съесть два хороших\n"
+            message += "2) Съесть один хороший и выкинуть один гнилой"
             print(message)
 
     class Shapka(Actor):
@@ -31,8 +33,11 @@ def main():
             ...
 
         def show_actions(self):
-            message = ""
+            message = super
+            message += "1) Съесть один хороший\n"
+            message += "2) Заменить два хороших на два гнилых"
             print(message)
+
 
     class Orange:
         rotten = False
@@ -50,6 +55,12 @@ def main():
                 if orange.rotten:
                     continue
                 else:
+                    return orange
+            return None
+
+        def pick_rotten_orange(self):
+            for orange in self.area:
+                if orange.rotten:
                     return orange
             return None
 
