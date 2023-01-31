@@ -5,31 +5,34 @@ def main():
         def __init__(self, play_area):
             self.play_area = play_area
 
-        @abstractmethod
         def can_move(self):
+            return self.play_area.pick_good_orange() is not None
+
+        @abstractmethod
+        def make_move(self, action):
             pass
 
         @abstractmethod
-        def make_move(self):
+        def show_actions(self):
             pass
 
     class Cheburashka(Actor):
-        actions = [
-            "Cъесть два",
-            "Съесть один, выкинуть гнилой"
-        ]
-        def can_move(self):
+
+        def make_move(self, action):
             ...
 
-        def make_move(self, action="Съесть два"):
-            ...
+        def show_actions(self):
+            message = ""
+            print(message)
 
     class Shapka(Actor):
-        def can_move(self):
-            ...
 
         def make_move(self):
             ...
+
+        def show_actions(self):
+            message = ""
+            print(message)
 
     class Orange:
         rotten = False
@@ -48,6 +51,7 @@ def main():
                     continue
                 else:
                     return orange
+            return None
 
 
 
