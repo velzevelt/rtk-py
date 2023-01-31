@@ -9,12 +9,13 @@ def main():
             return self.play_area.pick_good_orange() is not None
 
         @abstractmethod
-        def make_move(self, action):
+        def make_move(self, action_id):
             pass
 
         @abstractmethod
         def show_actions(self):
             message = "Я могу:\n"
+            return message
 
     class Cheburashka(Actor):
 
@@ -25,7 +26,7 @@ def main():
             message = super
             message += "1) Съесть два хороших\n"
             message += "2) Съесть один хороший и выкинуть один гнилой"
-            print(message)
+            return message
 
     class Shapka(Actor):
 
@@ -36,7 +37,7 @@ def main():
             message = super
             message += "1) Съесть один хороший\n"
             message += "2) Заменить два хороших на два гнилых"
-            print(message)
+            return message
 
 
     class Orange:
@@ -66,7 +67,6 @@ def main():
 
         def remove_orange(self, orange):
             self.area.remove(orange)
-
 
 
     n = int(input("Сколько апельсинов изначально? "))
