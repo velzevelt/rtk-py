@@ -53,6 +53,9 @@ def main():
                     return orange
             return None
 
+        def remove_orange(self, orange):
+            self.area.remove(orange)
+
 
 
     n = int(input("Сколько апельсинов изначально? "))
