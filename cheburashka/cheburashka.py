@@ -38,8 +38,6 @@ def main():
         def can_move(self):
             ...
 
-
-
     class Orange:
         rotten = False
 
