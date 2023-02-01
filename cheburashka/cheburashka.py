@@ -66,6 +66,12 @@ def main():
                 "Заменить два хороших апельсина на два гнилых"
             )
 
+        def eat_one(self):
+            ...
+
+        def replace_two_rotten(self):
+            ...
+
     class Box:
         area = []
 
