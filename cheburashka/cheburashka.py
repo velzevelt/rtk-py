@@ -32,13 +32,10 @@ def main():
             return message
 
     class Cheburashka(Actor):
-        eat_two = Actor.Action(
-            
-        )
+        pass
 
     class Shapka(Actor):
-        def can_move(self):
-            ...
+        pass
 
     class Box:
         area = []
