@@ -13,7 +13,8 @@ def main():
             self.name = name
 
         def can_move(self):
-            return len(self.actions_available) != 0
+            available_count = [action for action in self.actions_available if action.exist_condition]
+            return len(available_count) != 0
 
         def make_move(self, action_id):
             if action_id in self.actions_available:
@@ -31,8 +32,9 @@ def main():
             return message
 
     class Cheburashka(Actor):
-        def can_move(self):
-            pass
+        eat_two = Actor.Action(
+            
+        )
 
     class Shapka(Actor):
         def can_move(self):
