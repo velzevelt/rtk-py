@@ -47,10 +47,16 @@ def main():
             self.actions_available = [eat_two_action, eat_one_throw_rotten]
 
         def eat_two(self):
-            pass
+            for i in range(2):
+                good_orange = self.play_area.pick_good_orange()
+                self.play_area.remove_orange(good_orange)
 
         def eat_one_throw_rotten(self):
-            pass
+            good_orange = self.play_area.pick_good_orange()
+            self.play_area.remove_orange(good_orange)
+
+            rotten_orange = self.play_area.pick_rotten_orange()
+            self.play_area.remove_orange(rotten_orange)
 
     class Shapka(Actor):
         def __init__(self, play_area, name):
@@ -65,12 +71,16 @@ def main():
                 self.replace_two_rotten,
                 "Заменить два хороших апельсина на два гнилых"
             )
+            self.actions_available = [eat_one_action, replace_two_rotten_action]
 
         def eat_one(self):
-            ...
+            good_orange = self.play_area.pick_good_orange()
+            self.play_area.remove_orange(good_orange)
 
         def replace_two_rotten(self):
-            ...
+            for i in range(2):
+                good_orange = self.play_area.pick_good_orange()
+                good_orange.rotten = True
 
     class Box:
         area = []
