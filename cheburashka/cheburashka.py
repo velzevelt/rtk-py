@@ -25,10 +25,10 @@ def main():
                 return False
 
         def show_actions(self):
-            message = f"{self.name}: Я могу:\n"
+            message = f"{self.name}:\n"
             actions = [action for action in self.actions_available if action.exist_condition]
             for action_id, action in enumerate(actions):
-                message += f"{action_id + 1}): {action.action_description}\n"
+                message += f"{action_id + 1}) {action.action_description}\n"
             return message
 
     class Cheburashka(Actor):
@@ -40,7 +40,7 @@ def main():
                 "Съесть два хороших апельсина"
             )
             eat_one_throw_rotten = Actor.Action(
-                self.play_area.count_good_oranges() >= 1 and self.play_area.count_rotten_oranges >= 1,
+                self.play_area.count_good_oranges() >= 1 and self.play_area.count_rotten_oranges() >= 1,
                 self.eat_one_throw_rotten,
                 "Съесть один хороший, выбросить один гнилой"
             )
@@ -122,11 +122,14 @@ def main():
 
     n = int(input("Сколько апельсинов изначально? "))
     box = Box(n)
-    # cheburashka = Cheburashka(box, "Чебурашка")
-    # Shapka = Shapka(box, "Шапокляк")
+    cheburashka = Cheburashka(box, "Чебурашка")
+    shapka = Shapka(box, "Шапокляк")
 
-    # while cheburashka.can_move() and Shapka.can_move():
-    #     pass
+    while cheburashka.can_move() and shapka.can_move():
+        print(cheburashka.show_actions())
+        print(shapka.show_actions())
+
+        break
 
 
 main()
