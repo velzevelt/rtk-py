@@ -43,12 +43,12 @@ def main():
                 self.eat_two,
                 "Съесть два хороших апельсина"
             )
-            eat_one_throw_rotten = Actor.Action(
+            eat_one_throw_rotten_action = Actor.Action(
                 self.play_area.count_good_oranges() >= 1 and self.play_area.count_rotten_oranges() >= 1,
                 self.eat_one_throw_rotten,
                 "Съесть один хороший, выбросить один гнилой"
             )
-            self.actions_available = [eat_two_action, eat_one_throw_rotten]
+            self.actions_available = [eat_two_action, eat_one_throw_rotten_action]
 
         def eat_two(self):
             for i in range(2):
@@ -125,11 +125,12 @@ def main():
             return len(rotten_area)
 
     def start_game():
-        try:
-            n = int(input("Сколько апельсинов изначально? "))
-        except ValueError:
-            print("Пожалуйста, введите целое число")
-            start_game()
+        while True:
+            try:
+                n = int(input("Сколько апельсинов изначально? "))
+                break
+            except ValueError:
+                print("Пожалуйста, введите целое число")
 
         box = Box(n)
         cheburashka = Cheburashka(box, "Чебурашка")
@@ -137,19 +138,19 @@ def main():
 
         active_player = cheburashka
 
-
-        while cheburashka.can_move() and shapka.can_move():
+        while active_player.can_move():
             print(active_player.show_actions())
-            try:
-                action = int(input(f'Что должен сделать {active_player.name}? '))
-            except ValueError:
-                print("Пожалуйста, выберите номер действия из доступного списка")
-                start_game()
+            while True:
+                try:
+                    action = int(input(f'Что должен сделать {active_player.name}? '))
+                    if not active_player.make_move(action):
+                        raise ValueError
+                    break
+                except ValueError:
+                    print("Пожалуйста, выберите номер действия из доступного списка")
+                    print(active_player.show_actions())
 
-            if not active_player.make_move(action):
-                print("Пожалуйста, выберите номер действия из доступного списка")
-                start_game()
-            active_player = shapka if active_player == cheburashka else shapka
+            active_player = shapka if active_player == cheburashka else cheburashka
 
     start_game()
 
