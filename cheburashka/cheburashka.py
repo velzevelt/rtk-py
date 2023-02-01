@@ -124,6 +124,9 @@ def main():
             rotten_area = [orange for orange in self.area if orange.rotten]
             return len(rotten_area)
 
+        def count_oranges(self):
+            return len(self.area)
+
     def start_game():
         while True:
             try:
@@ -150,9 +153,12 @@ def main():
                     print("Пожалуйста, выберите номер действия из доступного списка")
                     print(active_player.show_actions())
 
+            print(f"Апельсинов осталось: {box.count_oranges()}")
+
+            winner = active_player
             active_player = shapka if active_player == cheburashka else cheburashka
-        winner = cheburashka if shapka.can_move() else shapka
-        print(f"Победитель: {winner}")
+
+        print(f"Победитель: {winner.name}")
 
     start_game()
 
