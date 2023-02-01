@@ -4,6 +4,12 @@ def main():
     class Actor(ABC):
         actions_available = []
 
+        class Action:
+            def __init__(self, exist_condition, action_func, action_description):
+                self.exist_condition = exist_condition
+                self.action_func = action_func
+                self.action_description = action_description
+
         def __init__(self, play_area, name):
             self.play_area = play_area
             self.name = name
@@ -16,9 +22,11 @@ def main():
         def make_move(self, action_id):
             pass
 
-        @abstractmethod
         def show_actions(self):
             message = "Я могу:\n"
+            actions = [action for action in self.actions_available if action.exist_condition]
+            for action_id, action in enumerate(actions):
+                message += f"{action_id + 1}): {action.action_description}\n"
             return message
 
     class Cheburashka(Actor):
@@ -26,17 +34,12 @@ def main():
         def can_move(self):
             pass
 
-        def make_move(self, action):
-            if action in self.actions_available:
-                self.actions_available[action]()
+        def make_move(self, action_id):
+            if action_id in self.actions_available:
+                self.actions_available[action_id]()
             else:
                 return False
 
-        def show_actions(self):
-            message = super
-            message += "1) Съесть два хороших\n"
-            message += "2) Съесть один хороший и выкинуть один гнилой"
-            return message
 
     class Shapka(Actor):
 
@@ -46,11 +49,6 @@ def main():
         def make_move(self):
             ...
 
-        def show_actions(self):
-            message = super
-            message += "1) Съесть один хороший\n"
-            message += "2) Заменить два хороших на два гнилых"
-            return message
 
     class Orange:
         rotten = False
