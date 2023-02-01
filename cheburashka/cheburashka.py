@@ -22,6 +22,7 @@ def main():
             try:
                 if self.actions_available[action_id].exist_condition:
                     self.actions_available[action_id].action_func()
+                    return True
                 else:
                     return False
             except IndexError:
@@ -51,7 +52,6 @@ def main():
 
         def eat_two(self):
             for i in range(2):
-                print(132)
                 good_orange = self.play_area.pick_good_orange()
                 self.play_area.remove_orange(good_orange)
 
@@ -124,28 +124,25 @@ def main():
             rotten_area = [orange for orange in self.area if orange.rotten]
             return len(rotten_area)
 
-    n = int(input("Сколько апельсинов изначально? "))
-    box = Box(n)
-    cheburashka = Cheburashka(box, "Чебурашка")
-    shapka = Shapka(box, "Шапокляк")
-
-    active_player = cheburashka
-
     def start_game():
+        n = int(input("Сколько апельсинов изначально? "))
+        box = Box(n)
+        cheburashka = Cheburashka(box, "Чебурашка")
+        shapka = Shapka(box, "Шапокляк")
+
+        active_player = cheburashka
         while cheburashka.can_move() and shapka.can_move():
             print(active_player.show_actions())
-            try:
+            action = int(input(f'Что должен сделать {active_player.name}? '))
+
+            while action is ValueError:
+                print("Пожалуйста, выберите номер действия из доступного списка")
                 action = int(input(f'Что должен сделать {active_player.name}? '))
-            except ValueError:
+
+            if not active_player.make_move(action):
                 print("Пожалуйста, выберите номер действия из доступного списка")
                 start_game()
-                # break
-            if not active_player.make_move(action):
-                print("1Пожалуйста, выберите номер действия из доступного списка")
-                start_game()
-                # break
-
-            break
+            active_player = shapka if active_player == cheburashka else shapka
 
     start_game()
 
