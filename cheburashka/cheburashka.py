@@ -125,19 +125,26 @@ def main():
             return len(rotten_area)
 
     def start_game():
-        n = int(input("Сколько апельсинов изначально? "))
+        try:
+            n = int(input("Сколько апельсинов изначально? "))
+        except ValueError:
+            print("Пожалуйста, введите целое число")
+            start_game()
+
         box = Box(n)
         cheburashka = Cheburashka(box, "Чебурашка")
         shapka = Shapka(box, "Шапокляк")
 
         active_player = cheburashka
+
+
         while cheburashka.can_move() and shapka.can_move():
             print(active_player.show_actions())
-            action = int(input(f'Что должен сделать {active_player.name}? '))
-
-            while action is ValueError:
-                print("Пожалуйста, выберите номер действия из доступного списка")
+            try:
                 action = int(input(f'Что должен сделать {active_player.name}? '))
+            except ValueError:
+                print("Пожалуйста, выберите номер действия из доступного списка")
+                start_game()
 
             if not active_player.make_move(action):
                 print("Пожалуйста, выберите номер действия из доступного списка")
