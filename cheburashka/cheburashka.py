@@ -1,7 +1,5 @@
 def main():
-    from abc import ABC, abstractmethod
-
-    class Actor(ABC):
+    class Actor:
         actions_available = []
 
         class Action:
@@ -19,7 +17,9 @@ def main():
 
         def make_move(self, action_id):
             if action_id in self.actions_available:
-                self.actions_available[action_id]()
+                action = self.actions_available[action_id]
+                if action.exist_condition:
+                    action()
             else:
                 return False
 
@@ -45,7 +45,7 @@ def main():
             rotten = False
 
         def __init__(self, n):
-            self.area = [Orange() for i in range(n)]
+            self.area = [self.Orange() for i in range(n)]
             self.good_count = len(self.area)
 
         def pick_good_orange(self):
