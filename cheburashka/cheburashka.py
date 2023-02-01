@@ -14,13 +14,14 @@ def main():
             self.play_area = play_area
             self.name = name
 
-        @abstractmethod
         def can_move(self):
-            pass  # Change self.actions_available here
+            return len(self.actions_available) != 0
 
-        @abstractmethod
         def make_move(self, action_id):
-            pass
+            if action_id in self.actions_available:
+                self.actions_available[action_id]()
+            else:
+                return False
 
         def show_actions(self):
             message = "Я могу:\n"
@@ -30,24 +31,13 @@ def main():
             return message
 
     class Cheburashka(Actor):
-
         def can_move(self):
             pass
 
-        def make_move(self, action_id):
-            if action_id in self.actions_available:
-                self.actions_available[action_id]()
-            else:
-                return False
-
-
     class Shapka(Actor):
-
         def can_move(self):
             ...
 
-        def make_move(self):
-            ...
 
 
     class Orange:
