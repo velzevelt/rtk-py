@@ -19,10 +19,9 @@ def main():
         def make_move(self, action_id):
             action_id -= 1
 
-            if action_id in self.actions_available:
-                action = self.actions_available[action_id]
-                if action.exist_condition:
-                    action()
+            if self.actions_available[action_id].exist_condition:
+                self.actions_available[action_id].action_func()
+
             else:
                 return False
 
@@ -129,11 +128,24 @@ def main():
 
     active_player = cheburashka
 
-    while cheburashka.can_move() and shapka.can_move():
-        print(active_player.show_actions())
-        action = intinput()
+    def start_game():
+        while cheburashka.can_move() and shapka.can_move():
+            print(active_player.show_actions())
+            try:
+                action = int(input(f'Что должен сделать {active_player.name}? '))
+            except ValueError:
+                print("Пожалуйста, выберите номер действия из доступного списка")
+                start_game()
+                # break
+            if not active_player.make_move(action):
+                print("1Пожалуйста, выберите номер действия из доступного списка")
+                start_game()
+                # break
 
-        break
+            break
+
+    start_game()
+
 
 
 main()
