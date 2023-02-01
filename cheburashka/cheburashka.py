@@ -32,10 +32,39 @@ def main():
             return message
 
     class Cheburashka(Actor):
-        pass
+        def __init__(self, play_area, name):
+            super().__init__(play_area, name)
+            eat_two_action = Actor.Action(
+                self.play_area.count_good_oranges() >= 2,
+                self.eat_two,
+                "Съесть два хороших апельсина"
+            )
+            eat_one_throw_rotten = Actor.Action(
+                self.play_area.count_good_oranges() >= 1 and self.play_area.count_rotten_oranges >= 1,
+                self.eat_one_throw_rotten,
+                "Съесть один хороший, выбросить один гнилой"
+            )
+            self.actions_available = [eat_two_action, eat_one_throw_rotten]
+
+        def eat_two(self):
+            pass
+
+        def eat_one_throw_rotten(self):
+            pass
 
     class Shapka(Actor):
-        pass
+        def __init__(self, play_area, name):
+            super().__init__(play_area, name)
+            eat_one_action = Actor.Action(
+                self.play_area.count_good_oranges() >= 1,
+                self.eat_one,
+                "Съесть один хороший"
+            )
+            replace_two_rotten_action = Actor.Action(
+                self.play_area.count_good_oranges() >= 2,
+                self.replace_two_rotten,
+                "Заменить два хороших апельсина на два гнилых"
+            )
 
     class Box:
         area = []
