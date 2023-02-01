@@ -2,11 +2,13 @@ def main():
     from abc import ABC, abstractmethod
 
     class Actor(ABC):
-        def __init__(self, play_area):
+        def __init__(self, play_area, name):
             self.play_area = play_area
+            self.name = name
 
+        @abstractmethod
         def can_move(self):
-            return self.play_area.pick_good_orange() is not None
+            pass  # return self.play_area.pick_good_orange() is not None
 
         @abstractmethod
         def make_move(self, action_id):
@@ -19,8 +21,23 @@ def main():
 
     class Cheburashka(Actor):
 
+        def can_move(self):
+            pass
+
         def make_move(self, action):
-            ...
+            if action == 1:
+                for i in range(2):
+                    print("AWPODKAPWODK")
+                    good_orange = self.play_area.pick_good_orange()
+                    self.play_area.remove_orange(good_orange)
+            elif action == 2:
+                good_orange = self.play_area.pick_good_orange()
+                self.play_area.remove_orange(good_orange)
+
+                rotten_orange = self.play_area.pick_rotten_orange()
+                self.play_area.remove_orange(rotten_orange)
+            else:
+                return False
 
         def show_actions(self):
             message = super
@@ -29,6 +46,9 @@ def main():
             return message
 
     class Shapka(Actor):
+
+        def can_move(self):
+            ...
 
         def make_move(self):
             ...
@@ -39,13 +59,11 @@ def main():
             message += "2) Заменить два хороших на два гнилых"
             return message
 
-
     class Orange:
         rotten = False
 
     class Box:
         area = []
-        good_count = 0
 
         def __init__(self, n):
             self.area = [Orange() for i in range(n)]
@@ -66,13 +84,15 @@ def main():
             return None
 
         def remove_orange(self, orange):
-            self.area.remove(orange)
-
+            if orange is not None:
+                self.area.remove(orange)
+            else:
+                raise Exception("Null Orange")
 
     n = int(input("Сколько апельсинов изначально? "))
     box = Box(n)
-    # cheburashka = Cheburashka(box)
-    # Shapka = Shapka(box)
+    # cheburashka = Cheburashka(box, "Чебурашка")
+    # Shapka = Shapka(box, "Шапокляк")
 
     # while cheburashka.can_move() and Shapka.can_move():
     #     pass
