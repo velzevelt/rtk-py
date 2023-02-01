@@ -38,11 +38,11 @@ def main():
         def can_move(self):
             ...
 
-    class Orange:
-        rotten = False
-
     class Box:
         area = []
+
+        class Orange:
+            rotten = False
 
         def __init__(self, n):
             self.area = [Orange() for i in range(n)]
