@@ -25,7 +25,7 @@ def main():
                 return False
 
         def show_actions(self):
-            message = "Я могу:\n"
+            message = f"{self.name}: Я могу:\n"
             actions = [action for action in self.actions_available if action.exist_condition]
             for action_id, action in enumerate(actions):
                 message += f"{action_id + 1}): {action.action_description}\n"
