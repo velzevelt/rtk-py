@@ -150,7 +150,9 @@ def main():
                     print("Пожалуйста, выберите номер действия из доступного списка")
                     print(active_player.show_actions())
 
-            # active_player = shapka if active_player == cheburashka else cheburashka
+            active_player = shapka if active_player == cheburashka else cheburashka
+        winner = cheburashka if shapka.can_move() else shapka
+        print(f"Победитель: {winner}")
 
     start_game()
 
