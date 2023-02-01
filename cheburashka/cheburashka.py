@@ -89,6 +89,14 @@ def main():
             else:
                 raise Exception("Null Orange")
 
+        def count_good_oranges(self):
+            good_area = [orange for orange in self.area if not orange.rotten]
+            return len(good_area)
+
+        def count_rotten_oranges(self):
+            rotten_area = [orange for orange in self.area if orange.rotten]
+            return len(rotten_area)
+
     n = int(input("Сколько апельсинов изначально? "))
     box = Box(n)
     # cheburashka = Cheburashka(box, "Чебурашка")
