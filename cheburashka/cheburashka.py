@@ -2,13 +2,15 @@ def main():
     from abc import ABC, abstractmethod
 
     class Actor(ABC):
+        actions_available = []
+
         def __init__(self, play_area, name):
             self.play_area = play_area
             self.name = name
 
         @abstractmethod
         def can_move(self):
-            pass  # return self.play_area.pick_good_orange() is not None
+            pass  # Change self.actions_available here
 
         @abstractmethod
         def make_move(self, action_id):
@@ -25,17 +27,8 @@ def main():
             pass
 
         def make_move(self, action):
-            if action == 1:
-                for i in range(2):
-                    print("AWPODKAPWODK")
-                    good_orange = self.play_area.pick_good_orange()
-                    self.play_area.remove_orange(good_orange)
-            elif action == 2:
-                good_orange = self.play_area.pick_good_orange()
-                self.play_area.remove_orange(good_orange)
-
-                rotten_orange = self.play_area.pick_rotten_orange()
-                self.play_area.remove_orange(rotten_orange)
+            if action in self.actions_available:
+                self.actions_available[action]()
             else:
                 return False
 
