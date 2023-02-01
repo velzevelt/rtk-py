@@ -20,7 +20,7 @@ def main():
             action_id -= 1
 
             try:
-                if self.actions_available[action_id].exist_condition:
+                if self.actions_available[action_id].exist_condition():
                     self.actions_available[action_id].action_func()
                     return True
                 else:
@@ -30,7 +30,7 @@ def main():
 
         def show_actions(self):
             message = f"{self.name}:\n"
-            actions = [action for action in self.actions_available if action.exist_condition]
+            actions = [action for action in self.actions_available if action.exist_condition()]
             for action_id, action in enumerate(actions):
                 message += f"{action_id + 1}) {action.action_description}\n"
             return message
@@ -136,7 +136,7 @@ def main():
         cheburashka = Cheburashka(box, "Чебурашка")
         shapka = Shapka(box, "Шапокляк")
 
-        active_player = shapka
+        active_player = cheburashka
 
         while active_player.can_move():
             print(active_player.show_actions())
