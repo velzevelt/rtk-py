@@ -3,7 +3,7 @@ def main():
         actions_available = []
 
         class Action:
-            def __init__(self, exist_condition, action_func, action_description):
+            def __init__(self, exist_condition: callable, action_func: callable, action_description):
                 self.exist_condition = exist_condition
                 self.action_func = action_func
                 self.action_description = action_description
@@ -13,7 +13,7 @@ def main():
             self.name = name
 
         def can_move(self):
-            available_count = [action for action in self.actions_available if action.exist_condition]
+            available_count = [action for action in self.actions_available if action.exist_condition()]
             return len(available_count) != 0
 
         def make_move(self, action_id):
@@ -39,12 +39,12 @@ def main():
         def __init__(self, play_area, name):
             super().__init__(play_area, name)
             eat_two_action = Actor.Action(
-                self.play_area.count_good_oranges() >= 2,
+                lambda: self.play_area.count_good_oranges() >= 2,
                 self.eat_two,
                 "Съесть два хороших апельсина"
             )
             eat_one_throw_rotten_action = Actor.Action(
-                self.play_area.count_good_oranges() >= 1 and self.play_area.count_rotten_oranges() >= 1,
+                lambda: self.play_area.count_good_oranges() >= 1 and self.play_area.count_rotten_oranges() >= 1,
                 self.eat_one_throw_rotten,
                 "Съесть один хороший, выбросить один гнилой"
             )
@@ -66,12 +66,12 @@ def main():
         def __init__(self, play_area, name):
             super().__init__(play_area, name)
             eat_one_action = Actor.Action(
-                self.play_area.count_good_oranges() >= 1,
+                lambda: self.play_area.count_good_oranges() >= 1,
                 self.eat_one,
                 "Съесть один хороший"
             )
             replace_two_rotten_action = Actor.Action(
-                self.play_area.count_good_oranges() >= 2,
+                lambda: self.play_area.count_good_oranges() >= 2,
                 self.replace_two_rotten,
                 "Заменить два хороших апельсина на два гнилых"
             )
@@ -136,7 +136,7 @@ def main():
         cheburashka = Cheburashka(box, "Чебурашка")
         shapka = Shapka(box, "Шапокляк")
 
-        active_player = cheburashka
+        active_player = shapka
 
         while active_player.can_move():
             print(active_player.show_actions())
@@ -150,7 +150,7 @@ def main():
                     print("Пожалуйста, выберите номер действия из доступного списка")
                     print(active_player.show_actions())
 
-            active_player = shapka if active_player == cheburashka else cheburashka
+            # active_player = shapka if active_player == cheburashka else cheburashka
 
     start_game()
 
