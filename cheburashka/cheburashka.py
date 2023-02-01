@@ -3,12 +3,12 @@ def main():
         actions_available = []
 
         class Action:
-            def __init__(self, exist_condition: callable, action_func: callable, action_description):
+            def __init__(self, exist_condition: callable, action_func: callable, action_description: str):
                 self.exist_condition = exist_condition
                 self.action_func = action_func
                 self.action_description = action_description
 
-        def __init__(self, play_area, name):
+        def __init__(self, play_area, name: str):
             self.play_area = play_area
             self.name = name
 
@@ -16,7 +16,7 @@ def main():
             available_count = [action for action in self.actions_available if action.exist_condition()]
             return len(available_count) != 0
 
-        def make_move(self, action_id):
+        def make_move(self, action_id: int):
             action_id -= 1
 
             try:
