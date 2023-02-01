@@ -19,10 +19,12 @@ def main():
         def make_move(self, action_id):
             action_id -= 1
 
-            if self.actions_available[action_id].exist_condition:
-                self.actions_available[action_id].action_func()
-
-            else:
+            try:
+                if self.actions_available[action_id].exist_condition:
+                    self.actions_available[action_id].action_func()
+                else:
+                    return False
+            except IndexError:
                 return False
 
         def show_actions(self):
@@ -49,6 +51,7 @@ def main():
 
         def eat_two(self):
             for i in range(2):
+                print(132)
                 good_orange = self.play_area.pick_good_orange()
                 self.play_area.remove_orange(good_orange)
 
