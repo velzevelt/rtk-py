@@ -17,6 +17,8 @@ def main():
             return len(available_count) != 0
 
         def make_move(self, action_id):
+            action_id -= 1
+
             if action_id in self.actions_available:
                 action = self.actions_available[action_id]
                 if action.exist_condition:
@@ -125,9 +127,11 @@ def main():
     cheburashka = Cheburashka(box, "Чебурашка")
     shapka = Shapka(box, "Шапокляк")
 
+    active_player = cheburashka
+
     while cheburashka.can_move() and shapka.can_move():
-        print(cheburashka.show_actions())
-        print(shapka.show_actions())
+        print(active_player.show_actions())
+        action = intinput()
 
         break
 
