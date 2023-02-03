@@ -8,5 +8,6 @@
 4. [Пушка?](sin_cos/sin_cos.py)
 5. [Квадратное уравнение](quad_equation/quad_equation.py)
 6. [Чебурашка](cheburashka/cheburashka.py)
+    * [Чебурашка Стратегия](cheburashka/solve.txt)
 7. [Знаки зодиака](zodiac_sign/zodiac_sign.py)
 8. [Типы треугольников](triangle/triangle.py)
