@@ -72,9 +72,6 @@ def main():
         Овца
     '''
     def play_game(init_side, end_side):
-        init_side = init_side.copy()
-        end_side = end_side.copy()
-
         while True:
             init_side_copy = init_side.copy()
             end_side_copy = end_side.copy()
@@ -103,7 +100,7 @@ def main():
                 print("Игра завершена")
                 break
 
-    play_game(start_side, finish_side)
+    play_game(start_side.copy(), finish_side.copy())
     
 
 
