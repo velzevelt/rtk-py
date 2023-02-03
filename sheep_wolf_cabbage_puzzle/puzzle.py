@@ -89,6 +89,8 @@ def main():
                     print("Игра завершена")
                     break
 
+            skip_first_move = False
+            
             init_side_copy = init_side.copy()
             end_side_copy = end_side.copy()
 
