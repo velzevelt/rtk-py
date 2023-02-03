@@ -32,8 +32,23 @@ def main():
                 
         return False
 
-    def has_won():
-        return len(finish_side) == 3
+    def has_won(side):
+        return len(side) == 3
+
+    def restart_suggest():
+        restart = input("Вы проиграли, начать заново д/н?")
+        if restart.lower() == "д":
+            play_game(start_side, finish_side)
+            return True
+        return False
+
+    def step_back_suggest(init_side, end_side):
+        step_back = input("Вы проиграли, сделать шаг назад д/н?")
+        if step_back.lower() == "д":
+            play_game(init_side, end_side)
+            return True
+        return False
+
 
     def make_move(first_side, second_side) -> None:
         name_1 = ", ".join(get_names(first_side).keys())
@@ -56,23 +71,40 @@ def main():
         Пропуск
         Овца
     '''
-    while True:
-        make_move(start_side, finish_side)
-        if has_loosed(start_side):
-            break
-        if has_won():
-            print("Вы решили задачу")
-            print("Игра завершена")
-            break
+    def play_game(init_side, end_side):
+        import numpy as np
+        init_side = np.copy(init_side)
+        end_side = np.copy(end_side)
 
-        make_move(finish_side, start_side)
-        if has_loosed(finish_side):
-            break
-        if has_won():
-            print("Вы решили задачу")
-            print("Игра завершена")
-            break
+        while True:
+            init_side_copy = np.copy(init_side)
+            end_side_copy = np.copy(end_side)
 
+            make_move(init_side, end_side)
+            if has_loosed(init_side):
+                if not restart_suggest():
+                    step_back_suggest(init_side_copy, end_side_copy)
+                break
+
+            if has_won(end_side):
+                print("Вы решили задачу")
+                print("Игра завершена")
+                break
+
+            init_side_copy = np.copy(init_side)
+            end_side_copy = np.copy(end_side)
+
+            make_move(end_side, init_side)
+            if has_loosed(end_side):
+                if not restart_suggest():
+                    step_back_suggest(init_side_copy, end_side_copy)
+                break
+            if has_won(end_side):
+                print("Вы решили задачу")
+                print("Игра завершена")
+                break
+
+    play_game(start_side, finish_side)
     
 
 
