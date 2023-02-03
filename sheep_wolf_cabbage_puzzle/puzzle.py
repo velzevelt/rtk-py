@@ -36,14 +36,14 @@ def main():
         return len(side) == 3
 
     def restart_suggest():
-        restart = input("Вы проиграли, начать заново д/н?")
+        restart = input("Вы проиграли, начать заново д/н? ")
         if restart.lower() == "д":
             play_game(start_side, finish_side)
             return True
         return False
 
     def step_back_suggest(init_side, end_side):
-        step_back = input("Вы проиграли, сделать шаг назад д/н?")
+        step_back = input("Вы проиграли, сделать шаг назад д/н? ")
         if step_back.lower() == "д":
             play_game(init_side, end_side)
             return True
@@ -72,13 +72,12 @@ def main():
         Овца
     '''
     def play_game(init_side, end_side):
-        import numpy as np
-        init_side = np.copy(init_side)
-        end_side = np.copy(end_side)
+        init_side = init_side.copy()
+        end_side = end_side.copy()
 
         while True:
-            init_side_copy = np.copy(init_side)
-            end_side_copy = np.copy(end_side)
+            init_side_copy = init_side.copy()
+            end_side_copy = end_side.copy()
 
             make_move(init_side, end_side)
             if has_loosed(init_side):
@@ -91,8 +90,8 @@ def main():
                 print("Игра завершена")
                 break
 
-            init_side_copy = np.copy(init_side)
-            end_side_copy = np.copy(end_side)
+            init_side_copy = init_side.copy()
+            end_side_copy = end_side.copy()
 
             make_move(end_side, init_side)
             if has_loosed(end_side):
