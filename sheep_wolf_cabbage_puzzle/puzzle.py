@@ -42,10 +42,10 @@ def main():
             return True
         return False
 
-    def step_back_suggest(init_side, end_side):
+    def step_back_suggest(init_side, end_side, skip_first_move=False):
         step_back = input("Вы проиграли, сделать шаг назад д/н? ")
         if step_back.lower() == "д":
-            play_game(init_side, end_side)
+            play_game(init_side, end_side, skip_first_move)
             return True
         return False
 
@@ -71,21 +71,23 @@ def main():
         Пропуск
         Овца
     '''
-    def play_game(init_side, end_side):
+    def play_game(init_side, end_side, skip_first_move=False):
         while True:
-            init_side_copy = init_side.copy()
-            end_side_copy = end_side.copy()
 
-            make_move(init_side, end_side)
-            if has_loosed(init_side):
-                if not restart_suggest():
-                    step_back_suggest(init_side_copy, end_side_copy)
-                break
+            if not skip_first_move:
+                init_side_copy = init_side.copy()
+                end_side_copy = end_side.copy()
 
-            if has_won(end_side):
-                print("Вы решили задачу")
-                print("Игра завершена")
-                break
+                make_move(init_side, end_side)
+                if has_loosed(init_side):
+                    if not restart_suggest():
+                        step_back_suggest(init_side_copy, end_side_copy)
+                    break
+
+                if has_won(end_side):
+                    print("Вы решили задачу")
+                    print("Игра завершена")
+                    break
 
             init_side_copy = init_side.copy()
             end_side_copy = end_side.copy()
@@ -93,7 +95,7 @@ def main():
             make_move(end_side, init_side)
             if has_loosed(end_side):
                 if not restart_suggest():
-                    step_back_suggest(init_side_copy, end_side_copy)
+                    step_back_suggest(init_side_copy, end_side_copy, True)
                 break
             if has_won(end_side):
                 print("Вы решили задачу")
