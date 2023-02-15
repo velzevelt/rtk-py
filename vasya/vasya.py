@@ -22,11 +22,12 @@ def get_strategy(num, current_state_id: int = 0, action: callable = multiply_by_
     temp = action(num)
 
     if temp < b:
-        states.append(State(temp, action))
-        return get_strategy(temp, current_state_id + 1)
+        states.append(State(temp, action.__name__))
+        return get_strategy(temp, current_state_id + 1, multiply_by_two)
     elif temp == b:
-        states.append(State(temp, str(action.__name__)))
-        return [state.action_name for state in states]
+        states.append(State(temp, action.__name__))
+        final_states = states[1:]
+        return [state.action_name for state in final_states]
     else:
         prev_id = current_state_id - 1
         if prev_id > 0:
