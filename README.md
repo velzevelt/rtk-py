@@ -11,3 +11,4 @@
     - [Чебурашка Стратегия](cheburashka/solve.md)
 7. [Знаки зодиака](zodiac_sign/zodiac_sign.py)
 8. [Типы треугольников](triangle/triangle.py)
+9. [Василий](vasya/vasya.py)
