@@ -3,11 +3,11 @@ def get_strategy(a: int, b: int) -> list | None:
     instrusctions = {
         'add_1': 'Приписать единицу',
         'mul_2': 'Умножить на два',
-        'no': 'Ничего делать не нужно. a == b'
+        'nothing': 'Ничего делать не нужно. Изначальное и желаемое числа равны'
     }
     
     if b == a:
-        return instrusctions['no']
+        return ['nothing']
     if a == 0:
         if b == 0:
             return None
@@ -41,7 +41,14 @@ def get_strategy(a: int, b: int) -> list | None:
 
 def main():
     res = get_strategy(a=0, b=4444)
-    print(res)
+    
+    out = 'Стратегия не найдена'
+    if isinstance(res, list):
+        out = ''
+        for key, instruction in enumerate(res):
+            out += f'{key}) {instruction}\n'
+    
+    print(out)
 
 
 if __name__ == '__main__':
