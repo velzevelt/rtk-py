@@ -80,9 +80,10 @@ def main():
             return
     
     print(f'Изначальное число: {a}, Желаемое число: {b}')
-    # res = get_strategy(a=16, b=6411*2)
-    
     res = get_strategy(a, b)
+
+
+    # res = get_strategy(a=16, b=6411*4)
     
     out = 'Стратегия не найдена'
     if isinstance(res, list):
