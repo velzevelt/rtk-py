@@ -40,7 +40,7 @@ def get_strategy(a: int, b: int) -> list | None:
 
 
 def main():
-    res = get_strategy(a=4, b=4111)
+    res = get_strategy(a=16, b=641)
     
     out = 'Стратегия не найдена'
     if isinstance(res, list):
