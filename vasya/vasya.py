@@ -32,14 +32,16 @@ def add_one_to_end(num):
 #         else:
 #             return False
 
-sys.setrecursionlimit(2000)
+sys.setrecursionlimit(3000)
 
 
 @lru_cache(maxsize=64)
-def get_strategy(num: int, current_state_id: int = 1, action: callable = add_one_to_end):
+def get_strategy(num: int, current_state_id: int = 1, action: callable = multiply_by_two):
     if num == b:
         return [alias['nothing_to_do']]
     else:
+        if num == 0:
+            action = add_one_to_end
         temp = action(num)
         if temp < b:
             states.append(State(temp, action.__name__))
@@ -52,31 +54,9 @@ def get_strategy(num: int, current_state_id: int = 1, action: callable = add_one
             prev_id = current_state_id - 1
             if prev_id >= 0:
                 prev_num = states[prev_id].num
-                states.pop()
                 return get_strategy(prev_num, prev_id, add_one_to_end)
             else:
                 return False
-
-# def get_stategy(num):
-#     if num == b:
-#         return [alias['nothing_to_do']]
-#     else:
-#         val_1 = multiply_by_two(num)
-#         val_2 = add_one_to_end(num)
-#
-#         if val_1 < b:
-#             pass
-#         elif val_1 == b:
-#             pass
-#         else:
-#             pass
-#
-#         if val_2 < b:
-#             pass
-#         elif val_2 == b:
-#             pass
-#         else:
-#             pass
 
 
 while True:
