@@ -15,23 +15,6 @@ def add_one_to_end(num):
     return num * 10 + 1
 
 
-# def get_strategy(num, current_state_id: int = 0, action: callable = multiply_by_two):
-#     temp = action(num)
-#
-#     if temp < b and temp != 0:
-#         states.append(State(temp, action.__name__))
-#         return get_strategy(temp, current_state_id + 1, multiply_by_two)
-#     elif temp == b:
-#         states.append(State(temp, action.__name__))
-#         final_states = states[1:]
-#         return [alias[state.action_name] for state in final_states]
-#     else:
-#         prev_id = current_state_id - 1
-#         if prev_id > 0:
-#             return get_strategy(states[prev_id].num, prev_id, add_one_to_end)
-#         else:
-#             return False
-
 sys.setrecursionlimit(3000)
 
 
