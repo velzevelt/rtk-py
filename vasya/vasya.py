@@ -32,7 +32,7 @@ def add_one_to_end(num):
 #         else:
 #             return False
 
-@lru_cache()
+@lru_cache(maxsize=64)
 def get_strategy(num: int, current_state_id: int = 0, action: callable = add_one_to_end):
     if num == b:
         return [alias['nothing_to_do']]
