@@ -38,7 +38,7 @@ def get_strategy(num: int, current_state_id: int = 0, action: callable = multipl
         temp = action(num)
         if temp < b:
             states.append(State(temp, action.__name__))
-            return get_strategy(temp, current_state_id + 1, action)
+            return get_strategy(temp, current_state_id + 1, multiply_by_two)
         elif temp == b:
             states.append(State(temp, action.__name__))
             final_states = states[1:]
@@ -46,8 +46,9 @@ def get_strategy(num: int, current_state_id: int = 0, action: callable = multipl
         else:
             prev_id = current_state_id - 1
             if prev_id > 0:
-                action = add_one_to_end if action == multiply_by_two else multiply_by_two
-                return get_strategy(states[prev_id].num, prev_id, action)
+                prev_num = states[prev_id].num
+                states.pop()
+                return get_strategy(prev_num, prev_id, add_one_to_end)
             else:
                 return False
 
