@@ -65,12 +65,16 @@ def get_stategy_2(num):
         if t1 == b:
             pass
         branches.append(t1)
+        t1 = multiply_by_two(t1)
 
     while t2 < b:
         if t2 == b:
             pass
         branches.append(t2)
+        t2 = add_one_to_end(t2)
 
+    for branch in branches:
+        pass
 
 
 
