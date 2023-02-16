@@ -1,21 +1,31 @@
-def get_strategy(a: int, b: int) -> list | None:
-    steps = []
+def log_instruction(instruction, old_val, new_val) -> str:
     instrusctions = {
         'add_1': 'Приписать единицу',
         'mul_2': 'Умножить на два',
         'nothing': 'Ничего делать не нужно. Изначальное и желаемое числа равны'
     }
+
+    return f'{instrusctions[instruction]} {old_val} -> {new_val}'
+
+
+def get_strategy(a: int, b: int) -> list | None:
+    steps = []
     
+    def add_1(num): return num * 10 + 1
+    def mul_2(num): return num * 2
+
     if b == a:
-        return ['nothing']
+        return log_instruction(instruction='nothing', old_val=a, new_val=b)
     if a == 0:
         if b == 0:
             return None
         else:
-            a += 1
-            steps.append('add_1')
+            cache = add_1(a)
+            steps.append(log_instruction(instruction=add_1.__name__, old_val=a, new_val=cache))
+            a = cache
             if a == b:
                 return steps
+    
     
 
     one_qty = 0
@@ -28,12 +38,15 @@ def get_strategy(a: int, b: int) -> list | None:
     # Теперь в temp хранится обрезанное число
     # Нужно сравнить с а, попытаться получить из a temp с помощью умножения
     while a < temp:
-        steps.append('mul_2')
-        a *= 2
+        cache = mul_2(a)
+        steps.append(log_instruction(instruction=mul_2.__name__, old_val=a, new_val=cache))
+        a = cache
     
     if a == temp:
         for i in range(one_qty):
-            steps.append('add_1')
+            cache = add_1(a)
+            steps.append(log_instruction(instruction=add_1.__name__, old_val=a, new_val=cache))
+            a = cache
         return steps
     else:
         return None
