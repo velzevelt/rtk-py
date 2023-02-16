@@ -45,10 +45,13 @@ if b > a:
         states.push(add 1)
 	b //= 10
     else:
-        if b & 2 == 0 and b // 2 > a:
+        if b & 2 == 0:
             if b // 2 > a:
 	       states.push(mul 2)
 	       b //= 2
+	    else:
+	       # Last closest
+	       
             
 else:
     return NULL
