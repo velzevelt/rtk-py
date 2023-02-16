@@ -79,8 +79,10 @@ def main():
         except KeyboardInterrupt:
             return
     
-    res = get_strategy(a=16, b=6411*2)
     print(f'Изначальное число: {a}, Желаемое число: {b}')
+    # res = get_strategy(a=16, b=6411*2)
+    
+    res = get_strategy(a, b)
     
     out = 'Стратегия не найдена'
     if isinstance(res, list):
