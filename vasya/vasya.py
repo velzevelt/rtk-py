@@ -14,6 +14,11 @@ def get_strategy(a: int, b: int) -> list | None:
     def add_1(num): return num * 10 + 1
     def mul_2(num): return num * 2
 
+    if a < 0 or b < 0:
+        from warnings import warn
+        warn('Функция не работает с отрицательными числами')
+        return None
+
     if b == a:
         return log_instruction(instruction='nothing', old_val=a, new_val=b)
     if a == 0:
@@ -25,7 +30,6 @@ def get_strategy(a: int, b: int) -> list | None:
             a = cache
             if a == b:
                 return steps
-    
 
     # Если число четное, необходимо сокращать его
     del_qty = 0
@@ -40,8 +44,6 @@ def get_strategy(a: int, b: int) -> list | None:
         one_qty += 1
         temp //= 10
     
-    
-
     
     # Нужно сравнить с а, попытаться получить из a temp с помощью умножения
     while a < temp:
@@ -67,7 +69,18 @@ def get_strategy(a: int, b: int) -> list | None:
 
 
 def main():
+    while True:
+        try:
+            a = int(input('Введите изначальное число: '))
+            b = int(input('Введите желаемое число: '))
+            break
+        except ValueError:
+            print('Пожалуйста, введите челое число')
+        except KeyboardInterrupt:
+            return
+    
     res = get_strategy(a=16, b=6411*2)
+    print(f'Изначальное число: {a}, Желаемое число: {b}')
     
     out = 'Стратегия не найдена'
     if isinstance(res, list):
