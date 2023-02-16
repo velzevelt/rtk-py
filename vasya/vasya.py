@@ -50,13 +50,17 @@ def get_strategy(a: int, b: int) -> list | None:
         a = cache
     
 
-
-
     if a == temp:
+        for i in range(del_qty):
+            cache = mul_2(a)
+            steps.append(log_instruction(instruction=mul_2.__name__, old_val=a, new_val=cache))
+            a = cache
+
         for i in range(one_qty):
             cache = add_1(a)
             steps.append(log_instruction(instruction=add_1.__name__, old_val=a, new_val=cache))
             a = cache
+        
         return steps
     else:
         return None
