@@ -53,9 +53,15 @@ def get_stategy_2(num):
     """ Функция анализирует числа и выбирает оптимальный путь """
     if num == b:
         return [alias['nothing_to_do']]
-    else:
-        if b % 2 == 0:
-            pass
+    elif num == 0:
+        num = add_one_to_end(num)
+        if num == b:
+            return [alias['nothing_to_do']]
+
+    if b % 2 == 0 and num % 2 == 0:
+        pass
+
+
 
 
 while True:
