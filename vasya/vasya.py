@@ -21,7 +21,7 @@ def get_strategy(a: int, b: int) -> list | None:
     one_qty = 0
     temp = b
 
-    while temp >= 10 and temp % 10 != 0:
+    while temp >= 10 and temp % 10 == 1:
         one_qty += 1
         temp //= 10
 
@@ -40,13 +40,13 @@ def get_strategy(a: int, b: int) -> list | None:
 
 
 def main():
-    res = get_strategy(a=0, b=4444)
+    res = get_strategy(a=4, b=4111)
     
     out = 'Стратегия не найдена'
     if isinstance(res, list):
         out = ''
         for key, instruction in enumerate(res):
-            out += f'{key}) {instruction}\n'
+            out += f'{key + 1}) {instruction}\n'
     
     print(out)
 
