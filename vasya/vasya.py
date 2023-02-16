@@ -24,7 +24,7 @@ def get_strategy(a: int, b: int) -> list | None:
     while temp >= 10 and temp % 10 == 1:
         one_qty += 1
         temp //= 10
-
+    
     # Теперь в temp хранится обрезанное число
     # Нужно сравнить с а, попытаться получить из a temp с помощью умножения
     while a < temp:
