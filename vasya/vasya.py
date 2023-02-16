@@ -59,8 +59,7 @@ def get_stategy_2(num):
             return [alias['nothing_to_do']]
 
     branches = []
-    t1 = multiply_by_two(num)
-    t2 = add_one_to_end(num)
+    t1 = t2 = num
     while t1 < b:
         if t1 == b:
             pass
@@ -74,7 +73,7 @@ def get_stategy_2(num):
         t2 = add_one_to_end(t2)
 
     for branch in branches:
-        pass
+        print(branch)
 
 
 
@@ -94,10 +93,12 @@ alias = {
 }
 
 
-res = get_strategy(a)
-if isinstance(res, list):
-    print('Победная стратегия найдена:')
-    for key, instruction in enumerate(res):
-        print(f'{key + 1}) {instruction}')
-else:
-    print('Победная стратегия отсутсвует')
+# res = get_strategy(a)
+# if isinstance(res, list):
+#     print('Победная стратегия найдена:')
+#     for key, instruction in enumerate(res):
+#         print(f'{key + 1}) {instruction}')
+# else:
+#     print('Победная стратегия отсутсвует')
+
+res = get_stategy_2(a)
