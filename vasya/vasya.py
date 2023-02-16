@@ -34,8 +34,7 @@ def get_strategy(num: int, current_state_id: int = 1, action: callable = multipl
             return get_strategy(temp, current_state_id + 1, multiply_by_two)
         elif temp == b:
             states.append(State(temp, action.__name__))
-            final_states = states[1:]
-            return [[alias[state.action_name], state.num] for state in final_states]
+            return get_result()
         else:
             prev_id = current_state_id - 1
             if prev_id >= 0:
@@ -43,6 +42,20 @@ def get_strategy(num: int, current_state_id: int = 1, action: callable = multipl
                 return get_strategy(prev_num, prev_id, add_one_to_end)
             else:
                 return False
+
+
+def get_result():
+    final_states = states[1:]
+    return [[alias[state.action_name], state.num] for state in final_states]
+
+
+def get_stategy_2(num):
+    """ Функция анализирует числа и выбирает оптимальный путь """
+    if num == b:
+        return [alias['nothing_to_do']]
+    else:
+        if b % 2 == 0:
+            pass
 
 
 while True:
