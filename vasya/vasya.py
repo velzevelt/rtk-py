@@ -1,3 +1,6 @@
+from functools import lru_cache
+
+
 class State:
     def __init__(self, num, action_name):
         self.num = num
@@ -29,12 +32,11 @@ def add_one_to_end(num):
 #         else:
 #             return False
 
-def get_strategy(num: int, current_state_id: int = 0, action: callable = multiply_by_two):
+@lru_cache()
+def get_strategy(num: int, current_state_id: int = 0, action: callable = add_one_to_end):
     if num == b:
         return [alias['nothing_to_do']]
     else:
-        if num == 0:
-            action = add_one_to_end
         temp = action(num)
         if temp < b:
             states.append(State(temp, action.__name__))
