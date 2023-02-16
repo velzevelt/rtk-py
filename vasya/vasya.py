@@ -50,7 +50,7 @@ def get_result():
 
 
 def get_stategy_2(num):
-    """ Функция анализирует числа и выбирает оптимальный путь """
+    """ Функция анализирует числа и выбирает один из возможных путей """
     if num == b:
         return [alias['nothing_to_do']]
     elif num == 0:
@@ -58,8 +58,18 @@ def get_stategy_2(num):
         if num == b:
             return [alias['nothing_to_do']]
 
-    if b % 2 == 0 and num % 2 == 0:
-        pass
+    branches = []
+    t1 = multiply_by_two(num)
+    t2 = add_one_to_end(num)
+    while t1 < b:
+        if t1 == b:
+            pass
+        branches.append(t1)
+
+    while t2 < b:
+        if t2 == b:
+            pass
+        branches.append(t2)
 
 
 
