@@ -5,7 +5,7 @@ def log_instruction(instruction, old_val, new_val) -> str:
         'nothing': 'Ничего делать не нужно. Изначальное и желаемое числа равны'
     }
 
-    return f'{instrusctions[instruction]} {old_val} -> {new_val}'
+    return f'{instrusctions[instruction]} ({old_val} -> {new_val})'
 
 
 def get_strategy(a: int, b: int) -> list | None:
@@ -26,22 +26,32 @@ def get_strategy(a: int, b: int) -> list | None:
             if a == b:
                 return steps
     
-    
 
-    one_qty = 0
+    # Если число четное, необходимо сокращать его
+    del_qty = 0
     temp = b
+    while temp % 2 == 0:
+        del_qty += 1
+        temp //= 2
 
+    # Если число содержит единицы на конце, необходимо их обрезать
+    one_qty = 0
     while temp >= 10 and temp % 10 == 1:
         one_qty += 1
         temp //= 10
     
-    # Теперь в temp хранится обрезанное число
+    
+
+    
     # Нужно сравнить с а, попытаться получить из a temp с помощью умножения
     while a < temp:
         cache = mul_2(a)
         steps.append(log_instruction(instruction=mul_2.__name__, old_val=a, new_val=cache))
         a = cache
     
+
+
+
     if a == temp:
         for i in range(one_qty):
             cache = add_1(a)
@@ -53,7 +63,7 @@ def get_strategy(a: int, b: int) -> list | None:
 
 
 def main():
-    res = get_strategy(a=16, b=641)
+    res = get_strategy(a=16, b=6411*2)
     
     out = 'Стратегия не найдена'
     if isinstance(res, list):
