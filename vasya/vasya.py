@@ -1,5 +1,5 @@
 from functools import lru_cache
-
+import sys
 
 class State:
     def __init__(self, num, action_name):
@@ -32,8 +32,11 @@ def add_one_to_end(num):
 #         else:
 #             return False
 
+sys.setrecursionlimit(2000)
+
+
 @lru_cache(maxsize=64)
-def get_strategy(num: int, current_state_id: int = 0, action: callable = add_one_to_end):
+def get_strategy(num: int, current_state_id: int = 1, action: callable = add_one_to_end):
     if num == b:
         return [alias['nothing_to_do']]
     else:
@@ -47,12 +50,33 @@ def get_strategy(num: int, current_state_id: int = 0, action: callable = add_one
             return [[alias[state.action_name], state.num] for state in final_states]
         else:
             prev_id = current_state_id - 1
-            if prev_id > 0:
+            if prev_id >= 0:
                 prev_num = states[prev_id].num
                 states.pop()
                 return get_strategy(prev_num, prev_id, add_one_to_end)
             else:
                 return False
+
+# def get_stategy(num):
+#     if num == b:
+#         return [alias['nothing_to_do']]
+#     else:
+#         val_1 = multiply_by_two(num)
+#         val_2 = add_one_to_end(num)
+#
+#         if val_1 < b:
+#             pass
+#         elif val_1 == b:
+#             pass
+#         else:
+#             pass
+#
+#         if val_2 < b:
+#             pass
+#         elif val_2 == b:
+#             pass
+#         else:
+#             pass
 
 
 while True:
