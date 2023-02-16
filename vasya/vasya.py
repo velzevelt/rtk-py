@@ -21,7 +21,7 @@ sys.setrecursionlimit(3000)
 @lru_cache(maxsize=64)
 def get_strategy(num: int, current_state_id: int = 1, action: callable = multiply_by_two):
     """
-        Функция рекурсивно перебирает все возможные варианты для достижения цели
+        Функция рекурсивно перебирает все возможные варианты для достижения цели. Неэффективный метод
     """
     if num == b:
         return [alias['nothing_to_do']]
