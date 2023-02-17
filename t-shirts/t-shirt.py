@@ -52,9 +52,16 @@ needed_sizes = {}
 for i in range(15):
     student = Student()
 
-    if student.desired_size in needed_sizes:
-        needed_sizes[student.desired_size] += 1
+    if type(student.desired_size) is tuple:
+        for val in student.desired_size:
+            if val in needed_sizes:
+                needed_sizes[val] += 1
+            else:
+                needed_sizes[val] = 1
     else:
-        needed_sizes[student.desired_size] = 1
+        if student.desired_size in needed_sizes:
+            needed_sizes[student.desired_size] += 1
+        else:
+            needed_sizes[student.desired_size] = 1
 
 print(needed_sizes)
