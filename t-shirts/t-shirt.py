@@ -34,14 +34,27 @@ class Student:
             if self.sure_chance > sure:
                 return random.choice(sizes).size_alias
             else:
-                first = random.choice(sizes)
-                second = random.choice(sizes)
-                while second == first:
-                    second = random.choice(sizes)
+                max_bound = len(sizes) - 1
+                rand_id = random.randrange(0, max_bound)
+                first = sizes[rand_id]
+
+                if rand_id != max_bound:
+                    second = sizes[rand_id + 1]
+                else:
+                    second = sizes[rand_id - 1]
 
                 return first.size_alias, second.size_alias
         else:
             raise IndexError("Init error need at least 2 to process")
 
 
-requested_sizes = []
+needed_sizes = {}
+for i in range(15):
+    student = Student()
+
+    if student.desired_size in needed_sizes:
+        needed_sizes[student.desired_size] += 1
+    else:
+        needed_sizes[student.desired_size] = 1
+
+print(needed_sizes)
