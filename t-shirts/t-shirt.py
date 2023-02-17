@@ -1,27 +1,47 @@
 import random
+from dataclasses import dataclass
 
+
+@dataclass
+class Size:
+    size_alias: str
+    quantity: int = 0
+
+
+def get_random_qty(max_qty: int = 10):
+    return random.randrange(0, max_qty)
+
+
+sizes = (
+    Size('S', get_random_qty(32)),
+    Size('M', get_random_qty(32)),
+    Size('L', get_random_qty(32)),
+    Size('XL', get_random_qty(32)),
+    Size('XXL', get_random_qty(32)),
+    Size('XXXL', get_random_qty(32)),
+
+)
 
 class Student:
-    sizes = ('S', 'M', 'L', 'XL', 'XXL', 'XXXL')
     sure_chance = .75  # шанс на то, что студент знает свой размер
 
     def __init__(self):
         self.desired_size = self.get_random_size()
 
     def get_random_size(self):
-        if len(self.sizes) > 2:
+        if len(sizes) > 2:
             sure = random.random()
             if self.sure_chance > sure:
-                return random.choice(self.sizes)
+                return random.choice(sizes).size_alias
             else:
-                first = random.choice(self.sizes)
-                second = random.choice(self.sizes)
+                first = random.choice(sizes)
+                second = random.choice(sizes)
                 while second == first:
-                    second = random.choice(self.sizes)
+                    second = random.choice(sizes)
 
-                return [first, second]
+                return first.size_alias, second.size_alias
         else:
             raise IndexError("Init error need at least 2 to process")
 
 
-students = [Student() for i in range(5)]
+requested_sizes = []
