@@ -1,11 +1,10 @@
 import random
-from dataclasses import dataclass
 
 
-@dataclass
 class Size:
-    size_alias: str
-    quantity: int = 0
+    def __init__(self, size_alias: str, quantity: int = 0):
+        self.size_alias = size_alias
+        self.quantity = quantity
 
 
 def get_random_qty(max_qty: int = 10):
@@ -66,6 +65,6 @@ for i in range(15):
 
 print(needed_sizes)
 
-for val in needed_sizes:
-    temp = Size(val, needed_sizes[val])
-    print(temp)
+# for val in needed_sizes:
+#     temp = Size(val, needed_sizes[val])
+#     if temp.size_alias == sizes[val]
