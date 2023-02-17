@@ -127,6 +127,9 @@ def main():
         def count_oranges(self):
             return len(self.area)
 
+    def autoplay():
+        pass
+
     def start_game():
         while True:
             try:
