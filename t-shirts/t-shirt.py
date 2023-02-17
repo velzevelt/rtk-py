@@ -65,3 +65,7 @@ for i in range(15):
             needed_sizes[student.desired_size] = 1
 
 print(needed_sizes)
+
+for val in needed_sizes:
+    temp = Size(val, needed_sizes[val])
+    print(temp)
