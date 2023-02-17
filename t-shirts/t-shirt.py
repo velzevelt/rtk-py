@@ -7,12 +7,12 @@ def main():
         return random.randrange(0, max_qty)
 
     sizes = {
-        'S': get_random_qty(3),
-        'M': get_random_qty(3),
-        'L': get_random_qty(3),
-        'XL': get_random_qty(3),
-        'XXL': get_random_qty(3),
-        'XXXL': get_random_qty(3),
+        'S': get_random_qty(15),
+        'M': get_random_qty(15),
+        'L': get_random_qty(15),
+        'XL': get_random_qty(15),
+        'XXL': get_random_qty(15),
+        'XXXL': get_random_qty(15),
 
     }
 
@@ -44,7 +44,7 @@ def main():
                 raise IndexError("Init error need at least 2 to process")
 
     needed_sizes = {}
-    for i in range(1):
+    for i in range(6):
         student = Student()
         if student.desired_size in needed_sizes:
             needed_sizes[student.desired_size] += 1
@@ -58,6 +58,8 @@ def main():
                 return
 
     print('Футболок хватит всем')
+    for size in needed_sizes:
+        print(f'Размер {size}, нужно раздать {needed_sizes[size]}')
 
 
 if __name__ == '__main__':
