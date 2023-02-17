@@ -39,24 +39,17 @@ def main():
                     else:
                         second = keys[rand_id - 1]
 
-                    return first, second
+                    return random.choice([first, second])
             else:
                 raise IndexError("Init error need at least 2 to process")
 
     needed_sizes = {}
-    for i in range(15):
+    for i in range(1):
         student = Student()
-        if type(student.desired_size) is tuple:
-            for val in student.desired_size:
-                if val in needed_sizes:
-                    needed_sizes[val] += 1
-                else:
-                    needed_sizes[val] = 1
+        if student.desired_size in needed_sizes:
+            needed_sizes[student.desired_size] += 1
         else:
-            if student.desired_size in needed_sizes:
-                needed_sizes[student.desired_size] += 1
-            else:
-                needed_sizes[student.desired_size] = 1
+            needed_sizes[student.desired_size] = 1
 
     for val in needed_sizes:
         if val in sizes:
