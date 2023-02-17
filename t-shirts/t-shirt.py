@@ -1,10 +1,10 @@
 import random
 from functools import lru_cache
 
+
 def main():
     def get_random_qty(max_qty: int = 10):
         return random.randrange(0, max_qty)
-
 
     sizes = {
         'S': get_random_qty(3),
@@ -15,7 +15,6 @@ def main():
         'XXXL': get_random_qty(3),
 
     }
-
 
     class Student:
         sure_chance = .75  # шанс на то, что студент знает свой размер
@@ -63,7 +62,10 @@ def main():
         if val in sizes:
             if needed_sizes[val] > sizes[val]:
                 print('Футболок не хватает')
-                break
+                return
 
     print('Футболок хватит всем')
-    
+
+
+if __name__ == '__main__':
+    main()
