@@ -22,7 +22,9 @@ result = []
 while True:
     if small_side != 0:
         # Здесь может сформироваться несуществующий прямоугольник [1, 0]
+        # Этот последний прямоугольник, неободим для выхода из цикла
         new_rect = [small_side, big_side % small_side]
+        # print(new_rect)
 
         new_square = [small_side, small_side]
         result.append([big_side // small_side, new_square])
@@ -32,5 +34,5 @@ while True:
     else:
         break
 
-for square in result:
-    print(f'Количество {square[0]}, Квадрат: {square[1]}')
+# for square in result:
+#     print(f'Количество: {square[0]}, Квадрат: {square[1]}')
