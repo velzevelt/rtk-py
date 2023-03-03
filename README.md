@@ -16,3 +16,4 @@
     - Футболки Схема
 11. Эйнштейн
 12. [Квадраты](squares/squares.py)
+13. [Обмен Валют](currency_exchange/currency_exchange.py)
