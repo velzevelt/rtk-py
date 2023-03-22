@@ -45,22 +45,31 @@ def main():
 
     # insert formatted data in table
     for key, value in enumerate(salaries):
-        deviation = "{0:+.02f}%".format( 100 - (average_salary / value) * 100, 2)
+        deviation = "{0:+.02f}%".format( 100 - (average_salary / value) * 100)
         table.add_row([key + 1, months_alias[key], num_format.format(value), num_format.format(pension_allocations[key]), deviation])
 
     print(table)
 
-    # second table with max salary
+    # tables with additional data
+    table = prettytable.PrettyTable()
+    table.field_names = ['Годовые отчисления', 'Годовой доход', 'Средняя зарплата']
+    table.add_row([num_format.format(year_pension_allocation), num_format.format(year_income), num_format.format(average_salary)])
+    print(table)
+
+
     max_salary = max(salaries)
     max_salary_key = salaries.index(max_salary)
-    # min_salary = min(salaries)
-    # min_salary_key = salaries[min_salary]
-
-    # table = prettytable.PrettyTable()
-    # table.field_names('N', 'Месяц', 'MAX Зарплата')
-    # table.add_row([max_salary_key + 1, months_alias[max_salary_key], max_salary])
-
-    print(max_salary, max_salary_key)
+    table = prettytable.PrettyTable()
+    table.field_names = ['N', 'Месяц', 'MAX Зарплата']
+    table.add_row([max_salary_key + 1, months_alias[max_salary_key], num_format.format(max_salary)])
+    print(table)
+    
+    min_salary = min(salaries)
+    min_salary_key = salaries.index(min_salary)
+    table = prettytable.PrettyTable()
+    table.field_names = ['N', 'Месяц', 'MIN Зарплата']
+    table.add_row([min_salary_key + 1, months_alias[min_salary_key], num_format.format(min_salary)])
+    print(table)
 
 
 if __name__ == "__main__":
