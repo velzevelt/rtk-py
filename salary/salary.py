@@ -1,5 +1,6 @@
 import random
 import prettytable
+import enum
 
 '''
 
@@ -19,6 +20,37 @@ salaries = [random.randint(1000, 5000) for i in range(12)]
 pension_allocations = [round(salary * 0.02) for salary in salaries]
 year_income = sum(salaries)
 year_pension_allocation = round(year_income * 0.02)
+average_salary = year_income // len(salaries)
 
 print(salaries)
 print(year_income, year_pension_allocation)
+
+# prepare table
+table = prettytable.PrettyTable()
+table.field_names = ['N', 'Месяц', 'Зарплата', 'Отчисления', 'Отклонение']
+
+MONTHS_ALIAS = {
+    0: 'Январь',
+    1: 'Февраль',
+    2: 'Март',
+    3: 'Апрель',
+    4: 'Май',
+    5: 'Июнь',
+    6: 'Июль',
+    7: 'Август',
+    8: 'Сентябрь',
+    9: 'Октябрь',
+    10: 'Ноябрь',
+    11: 'Декабрь'
+}
+
+NUM_FORMAT = "{:}$"
+
+
+# insert formatted data in table
+for key, value in enumerate(salaries):
+    deviation = "{0:+.02f}%".format( 100 - (average_salary / value) * 100, 2)
+    table.add_row([key + 1, MONTHS_ALIAS[key], NUM_FORMAT.format(value), NUM_FORMAT.format(pension_allocations[key]), deviation])
+
+print(table)
+
