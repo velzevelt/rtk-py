@@ -1,3 +1,6 @@
+import random
+import prettytable
+
 '''
 
 Имеются зарплаты одного сотрудника фирмы по месяцам года (диапозон значений [1000; 5000]$).
@@ -9,3 +12,15 @@
 
 
 '''
+
+# salaries per month
+salaries = [random.randint(1000, 5000) for i in range(12)]
+
+pension_allocations = [round(salary * 0.02) for salary in salaries]
+
+# year income
+total_income = sum(salaries)
+
+
+
+print(salaries, pension_allocations)
