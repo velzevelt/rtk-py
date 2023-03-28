@@ -9,7 +9,7 @@ def main():
     ar = [i for i in range(100) if i % 2 != 0]
     print(ar)
 
-    num = 48
+    num = 15
     # while True:
     #     try:
     #         num = int(input("Введите желаемое число "))
@@ -19,20 +19,27 @@ def main():
     #     except KeyboardInterrupt:
     #         return
 
-    # counter = 0
-    # for key, val in enumerate(ar):
-    #     counter += val
-    #     print(key, val, counter)
-    #     if counter == num:
-    #         print(key)
-    #         break
-    #     elif counter > num:
-    #         counter = val
-    #     elif val > num:
-    #         print("Пара не найдена")
-    #         break
-    # else:
-    #     print("Пара не найдена")
+    closest = 0
+    last = 0
+    for key, val in enumerate(ar):
+        if key == 0:
+            continue
+
+        prev = ar[key - 1]
+        step = prev + val
+        if step == num:
+            print(prev, val)
+            break
+        elif step > num:
+            break
+        else:
+            last = val
+            closest = step
+    t = num - closest
+    if t in ar:
+        print(t, last)
+    else:
+        print("Пара не найдена")
 
 
 if __name__ == '__main__':
