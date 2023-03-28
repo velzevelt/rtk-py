@@ -18,3 +18,4 @@
 12. [Квадраты](squares/squares.py)
 13. [Обмен Валют](currency_exchange/currency_exchange.py)
 14. [Зарплата](salary/salary.py)
+15. [Сумма из подмножества](subset/subset.py)
