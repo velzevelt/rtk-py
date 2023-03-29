@@ -19,4 +19,4 @@
 13. [Обмен Валют](currency_exchange/currency_exchange.py)
 14. [Зарплата](salary/salary.py)
 15. [Сумма из подмножества](subset/subset.py)
-16. [Сортировка по знаку отрицания](negative_sort/negative_sort.py)
+16. [Сортировка по отрицанию](negative_sort/negative_sort.py)
