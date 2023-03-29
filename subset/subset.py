@@ -9,15 +9,15 @@ def main():
     ar = [i for i in range(1000) if i % 2 != 0]
     print(ar)
 
-    num = 1996
-    # while True:
-    #     try:
-    #         num = int(input("Введите желаемое число "))
-    #         break
-    #     except ValueError:
-    #         pass
-    #     except KeyboardInterrupt:
-    #         return
+    # num = 1996
+    while True:
+        try:
+            num = int(input("Введите желаемое число "))
+            break
+        except ValueError:
+            pass
+        except KeyboardInterrupt:
+            return
 
     length = len(ar)
     for key, val in enumerate(ar):
@@ -30,8 +30,6 @@ def main():
 
         # Здесь length == length - 1, так как конец не включается
         for i in ar[next_key:length]:
-            print(tmp, next_key)
-
             tmp += i
             subset.append(i)
             if tmp == num:
