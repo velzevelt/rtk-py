@@ -6,27 +6,39 @@
 
 
 def main():
-    ar = [i for i in range(100) if i % 2 != 0]
+    ar = [i for i in range(1000) if i % 2 != 0]
     print(ar)
 
-    # num = 8
-    while True:
-        try:
-            num = int(input("Введите желаемое число "))
-            break
-        except ValueError:
-            pass
-        except KeyboardInterrupt:
-            return
+    num = 1996
+    # while True:
+    #     try:
+    #         num = int(input("Введите желаемое число "))
+    #         break
+    #     except ValueError:
+    #         pass
+    #     except KeyboardInterrupt:
+    #         return
 
+    length = len(ar)
     for key, val in enumerate(ar):
-        if key == 0:
+        next_key = key + 1
+        if next_key > length - 1:
             continue
-        prev = ar[key - 1]
-        if val + prev == num:
-            print(prev, val)
-            break
 
+        tmp = val
+        subset = [val]
+
+        # Здесь length == length - 1, так как конец не включается
+        for i in ar[next_key:length]:
+            print(tmp, next_key)
+
+            tmp += i
+            subset.append(i)
+            if tmp == num:
+                print(f'{subset} => {num}')
+                return
+            elif tmp > num:
+                break
     else:
         print("Пара не найдена")
 
