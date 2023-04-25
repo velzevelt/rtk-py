@@ -47,6 +47,7 @@ def main():
     frac3 = frac + frac2
 
     print(frac3.numerator, frac3.denominator)
+    print(frac.numerator, frac.denominator)
 
 
 if __name__ == '__main__':
