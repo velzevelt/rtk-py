@@ -21,8 +21,12 @@ class Fraction:
     def numerator(self, value):
         self._numerator = value
 
+   
+
     # Overload +, += operator
     def __add__(self, other):
+        other = Fraction.convert(other)  
+
         new_num = other.denominator * self.numerator
         new_num += other.numerator * self.denominator
         new_denom = other.denominator * self.denominator
@@ -30,6 +34,8 @@ class Fraction:
 
     # Overload -, -= operator
     def __sub__(self, other):
+        other = Fraction.convert(other)
+
         new_num = other.denominator * self.numerator
         new_num -= other.numerator * self.denominator
         new_denom = other.denominator * self.denominator
@@ -45,10 +51,14 @@ class Fraction:
 
     # Overload * operator
     def __mul__(self, other):
+        other = Fraction.convert(other)
+
         return Fraction(self.numerator * other.numerator, self.denominator * other.denominator)
 
     # Overload == operator
     def __eq__(self, other):
+        other = Fraction.convert(other)
+
         return self.numerator == other.numerator and self.denominator == other.denominator
 
     # Overload != operator
@@ -57,10 +67,14 @@ class Fraction:
 
     # Overload >= operator
     def __ge__(self, other):
+        other = Fraction.convert(other)
+
         return self.numerator / self.denominator >= other.numerator / self.denominator
 
     # Overload > operator
     def __gt__(self, other):
+        other = Fraction.convert(other)
+
         return self.numerator / self.denominator > other.numerator / self.denominator
 
     # Overload <= operator
@@ -101,3 +115,9 @@ class Fraction:
             self.denominator = new_denom
 
         return self
+    
+    def convert(obj):
+        if not isinstance(obj, Fraction):
+            obj = int(obj)
+            obj = Fraction(numerator=obj)
+        return obj
