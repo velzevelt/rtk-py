@@ -22,18 +22,21 @@ class TestFractionLogic(unittest.TestCase):
         frac2 = Fraction(3, 5)
         self.assertEqual(frac / frac2, Fraction(5, 6)) # 5/6 <- 1*5/2*3 <- 1/2 * 5/3 <- 1/2 / 3/5
 
-    def test_simpify(self):
-        frac3 = Fraction(3, 12).simpify()
+    def test_simplify(self):
+        frac3 = Fraction(3, 12).simplify()
         self.assertEqual(frac3, Fraction(1, 4)) # 1/4 <- 3/12
 
-        frac3 = Fraction(12, 3).simpify()
+        frac3 = Fraction(12, 3).simplify()
         self.assertEqual(frac3, Fraction(4, 1)) # 4/1 <- 12/3
 
-        frac3 = Fraction(32, 6).simpify()
+        frac3 = Fraction(32, 6).simplify()
         self.assertEqual(frac3, Fraction(16, 3)) # 16/3 <- 32/6
 
-        frac3 = Fraction(6, 32).simpify()
+        frac3 = Fraction(6, 32).simplify()
         self.assertEqual(frac3, Fraction(3, 16)) # 3/16 <- 6/32
+
+        frac3 = Fraction(16, 20)
+        self.assertEqual(frac3.simplify(), Fraction(4, 5))
 
     def test_zero_division(self):
         try:

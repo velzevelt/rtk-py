@@ -94,7 +94,7 @@ class Fraction:
         frac = (self.numerator, self.denominator)
         return all(x >= 0 for x in frac) or all(x <= 0 for x in frac)
 
-    def simpify(self):
+    def simplify(self):
         if self.denominator % self.numerator == 0:
             new_num = 1
             new_denom = self.denominator // self.numerator
@@ -109,8 +109,8 @@ class Fraction:
             new_num = self.numerator // 2
             new_denom = self.denominator // 2
             while new_num % 2 == 0 and new_denom % 2 == 0:
-                new_num = self.numerator // 2
-                new_denom = self.denominator // 2
+                new_num //= 2
+                new_denom //= 2
             self.numerator = new_num
             self.denominator = new_denom
 
