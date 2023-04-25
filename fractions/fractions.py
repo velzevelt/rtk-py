@@ -71,6 +71,14 @@ class Fraction:
             new_denom = 1
             self.numerator = new_num
             self.denominator = new_denom
+        elif self.numerator % 2 == 0 and self.denominator % 2 == 0:
+            new_num = self.numerator // 2
+            new_denom = self.denominator // 2
+            while new_num % 2 == 0 and new_denom % 2 == 0:
+                new_num = self.numerator // 2
+                new_denom = self.denominator // 2
+            self.numerator = new_num
+            self.denominator = new_denom
         
         return self
 
@@ -89,6 +97,12 @@ def main():
 
     frac3 = Fraction(12, 3)
     print(frac3.simpify()) # 4/1 <- 12/3
+
+    frac3 = Fraction(32, 6)
+    print(frac3.simpify()) # 16/3 <- 32/6
+
+    frac3 = Fraction(6, 32)
+    print(frac3.simpify()) # 3/16 <- 6/32
 
 
 
