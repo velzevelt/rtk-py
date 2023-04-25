@@ -20,7 +20,7 @@ class Fraction:
     @numerator.setter
     def numerator(self, value):
         self._numerator = value
-    
+
     # Overload +, += operator
     def __add__(self, other):
         new_num = other.denominator * self.numerator
@@ -39,27 +39,47 @@ class Fraction:
     def __truediv__(self, other):
         return self * Fraction(other.denominator, other.numerator)
 
+    # Overload // operator
+    def __floordiv__(self, other):
+        raise NotImplementedError
+
     # Overload * operator
     def __mul__(self, other):
         return Fraction(self.numerator * other.numerator, self.denominator * other.denominator)
 
-    def __neg__(self):
-        pass
+    # Overload == operator
+    def __eq__(self, other):
+        return self.numerator == other.numerator and self.denominator == other.denominator
 
-    def __pos__(self):
-        pass
+    # Overload != operator
+    def __ne__(self, other):
+        return not self == other
 
+    # Overload >= operator
+    def __ge__(self, other):
+        return self.numerator / self.denominator >= other.numerator / self.denominator
+
+    # Overload > operator
+    def __gt__(self, other):
+        return self.numerator / self.denominator > other.numerator / self.denominator
+
+    # Overload <= operator
+    def __le__(self, other):
+        return not self >= other
+
+    # Overload < operator
+    def __lt__(self, other):
+        return not self > other
 
     # Overload string out
     def __str__(self):
         sign = '-' if not self.is_positive() else ''
         return f'{sign}{abs(self.numerator)}/{abs(self.denominator)}'
-    
 
     def is_positive(self):
         frac = (self.numerator, self.denominator)
         return all(x >= 0 for x in frac) or all(x <= 0 for x in frac)
-    
+
     def simpify(self):
         if self.denominator % self.numerator == 0:
             new_num = 1
@@ -79,32 +99,60 @@ class Fraction:
                 new_denom = self.denominator // 2
             self.numerator = new_num
             self.denominator = new_denom
-        
+
         return self
 
 
-def main():
-    frac = Fraction(1, 2)
-    frac2 = Fraction(3, 5)
+def test():
+    import unittest
 
-    print(frac + frac2) # 11/10 <- 5/10 + 6/10 <- 1/2 + 3/5
-    print(frac - frac2) # -1/10 <- 5/10 - 6/10 <- 1/2 - 3/5
-    print(frac * frac2) # 3/10 <- 1*3/2*5 <- 1/2 * 3/5
-    print(frac / frac2) # 5/6 <- 1*5/2*3 <- 1/2 * 5/3 <- 1/2 / 3/5
+    class TestFractionLogic(unittest.TestCase):
+        frac = Fraction(1, 2)
+        frac2 = Fraction(3, 5)
 
-    frac3 = Fraction(3, 12)
-    print(frac3.simpify()) # 1/4 <- 3/12
+        def add_test(self):
+            # 11/10 <- 5/10 + 6/10 <- 1/2 + 3/5
+            self.assertEqual(frac + frac2, Fraction(11, 10))
 
-    frac3 = Fraction(12, 3)
-    print(frac3.simpify()) # 4/1 <- 12/3
+        def sub_test(self):
+            # -1/10 <- 5/10 - 6/10 <- 1/2 - 3/5
+            self.assertEqual(frac - frac2, Fraction(-1, 10))
 
-    frac3 = Fraction(32, 6)
-    print(frac3.simpify()) # 16/3 <- 32/6
+        def mul_test(self):
+            # 3/10 <- 1*3/2*5 <- 1/2 * 3/5
+            self.assertEqual(frac * frac2, Fraction(3, 10))
 
-    frac3 = Fraction(6, 32)
-    print(frac3.simpify()) # 3/16 <- 6/32
+        def div_test(self):
+            # 5/6 <- 1*5/2*3 <- 1/2 * 5/3 <- 1/2 / 3/5
+            self.assertEqual(frac / frac2, Fraction(5, 6))
 
+        # def simpify_tests(self):
+        #     pass
+
+        # frac3 = Fraction(3, 12)
+        # print(frac3.simpify()) # 1/4 <- 3/12
+
+        # frac3 = Fraction(12, 3)
+        # print(frac3.simpify()) # 4/1 <- 12/3
+
+        # frac3 = Fraction(32, 6)
+        # print(frac3.simpify()) # 16/3 <- 32/6
+
+        # frac3 = Fraction(6, 32)
+        # print(frac3.simpify()) # 3/16 <- 6/32
+
+        # try:
+        #     invalid_frac = Fraction(1, 0)
+        # except ZeroDivisionError:
+        #     print('Invalid fraction')
+
+    # unittest.main()
+
+
+def interactive():
+    pass
 
 
 if __name__ == '__main__':
-    main()
+    test()
+    interactive()
