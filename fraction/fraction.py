@@ -118,6 +118,22 @@ class Fraction:
     
     def convert(obj):
         if not isinstance(obj, Fraction):
-            obj = int(obj)
-            obj = Fraction(numerator=obj)
+            if isinstance(obj, float):
+                tens = pow(10, fractional_part_len(obj))
+                num = int(obj * tens)
+                obj = Fraction(num, tens)
+            else:
+                obj = int(obj) # Cannot cast from all types
+                obj = Fraction(numerator=obj)
         return obj
+
+
+def fractional_part_len(number_to_count):
+    count = 0
+    
+    while number_to_count % 1 != 0:
+        number_to_count *= 10
+        count += 1
+    
+    return count
+
