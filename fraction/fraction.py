@@ -131,6 +131,9 @@ class Fraction:
                 obj = int(obj) # Cannot cast from all types
                 obj = Fraction(numerator=obj)
         return obj
+    
+    def to_float(self):
+        return self.numerator / self.denominator
 
 
 def fractional_part_len(number_to_count):
