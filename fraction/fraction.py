@@ -99,6 +99,7 @@ class Fraction:
         frac = (self.numerator, self.denominator)
         return all(x >= 0 for x in frac) or all(x <= 0 for x in frac)
 
+
     def simplify(self):
         if self.denominator % self.numerator == 0:
             new_num = 1
