@@ -1,7 +1,12 @@
 class Fraction:
     def __init__(self, numerator, denominator=1):
-        self.numerator = numerator
-        self.denominator = denominator
+        if isinstance(numerator, float):
+            frac = Fraction.convert(numerator)
+            self.numerator = frac.numerator
+            self.denominator = frac.denominator
+        else:
+            self.numerator = numerator
+            self.denominator = denominator
 
     @property
     def denominator(self):
