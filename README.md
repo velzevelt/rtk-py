@@ -21,4 +21,4 @@
 15. [Сумма из подмножества](subset/subset.py)
 16. [Сортировка по отрицанию](negative_sort/negative_sort.py)
 17. [Пузырьковая сортировка](bubble_sort/bubble_sort.py)
-18. [Дроби](fractions/fractions.py)
+18. [Дроби](fraction/fraction.py)
