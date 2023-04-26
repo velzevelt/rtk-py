@@ -22,3 +22,5 @@
 16. [Сортировка по отрицанию](negative_sort/negative_sort.py)
 17. [Пузырьковая сортировка](bubble_sort/bubble_sort.py)
 18. [Дроби](fraction/interactive.py)
+19. [Теория вероятностей](probability_math/probability_math.py)
+20. [Палиндром](palindrome/palindrome.py)
