@@ -26,8 +26,6 @@ class Fraction:
     def numerator(self, value):
         self._numerator = value
 
-   
-
     # Overload +, += operator
     def __add__(self, other):
         other = Fraction.convert(other)  
@@ -52,7 +50,7 @@ class Fraction:
 
     # Overload // operator
     def __floordiv__(self, other):
-        raise NotImplementedError
+        return self / other
 
     # Overload * operator
     def __mul__(self, other):
@@ -63,8 +61,8 @@ class Fraction:
     # Overload == operator
     def __eq__(self, other):
         other = Fraction.convert(other)
-
-        return self.numerator == other.numerator and self.denominator == other.denominator
+        
+        return str(self) == str(other)
 
     # Overload != operator
     def __ne__(self, other):
@@ -99,7 +97,6 @@ class Fraction:
         frac = (self.numerator, self.denominator)
         return all(x >= 0 for x in frac) or all(x <= 0 for x in frac)
 
-
     def simplify(self):
         if self.denominator % self.numerator == 0:
             new_num = 1
@@ -129,7 +126,7 @@ class Fraction:
                 num = int(obj * tens)
                 obj = Fraction(num, tens)
             else:
-                obj = int(obj) # Cannot cast from all types
+                obj = int(obj)  # Cannot cast from all types
                 obj = Fraction(numerator=obj)
         return obj
     
