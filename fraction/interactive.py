@@ -21,7 +21,7 @@ def greet():
 
         3. Сложение
         frac = Fraction(1, 2) + Fraction(4, 10)
-        frac = Fraction(3, 2) + 0.4)
+        frac = Fraction(3, 2) + 0.4
         
         4. Умножение
         frac = Fraction(1, 2) * 3
@@ -33,7 +33,7 @@ def greet():
         Обратите внимание, что frac1 == frac2,
         т.е операторы / и // ведут себя идентично для данного объекта
         
-        4. Упрощение
+        6. Упрощение
         print( Fraction(3, 6).simplify() )
 
     Доступны большинство мат. операций для Fraction
