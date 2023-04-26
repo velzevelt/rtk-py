@@ -5,8 +5,8 @@ class Fraction:
             self.numerator = frac.numerator
             self.denominator = frac.denominator
         else:
-            self.numerator = numerator
-            self.denominator = denominator
+            self.numerator = int(numerator)
+            self.denominator = int(denominator)
 
     @property
     def denominator(self):
