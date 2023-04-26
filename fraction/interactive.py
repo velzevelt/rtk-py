@@ -13,14 +13,26 @@ def greet():
 
     Примеры:
         1. Создание дроби
-        frac = Fraction(1, 2)
+        frac = Fraction(3, 10)
+        frac = Fraction(0.3)
 
         2. Просмотр значения
-        str(frac)
+        str(frac) или print(frac)
 
         3. Сложение
-        str( Fraction(1, 2) + Fraction(3, 4) )
-
+        str( Fraction(1, 2) + Fraction(4, 10) )
+        str( Fraction(3, 2) + 0.4)
+        
+        4. Умножение
+        frac = Fraction(1, 2) * 3
+        frac = Fraction(1, 2) * Fraction(3, 1)
+        
+        5. Деление
+        frac1 = Fraction(1, 2) / 3
+        frac2 = Fraction(1, 2) // 3
+        Обратите внимание, frac1 == frac2,
+        т.е операторы ведут себя идентично для данного объекта
+        
         4. Упрощение
         str( Fraction(3, 6).simplify() )
 
