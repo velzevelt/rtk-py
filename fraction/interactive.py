@@ -20,8 +20,8 @@ def greet():
         str(frac) или print(frac)
 
         3. Сложение
-        str( Fraction(1, 2) + Fraction(4, 10) )
-        str( Fraction(3, 2) + 0.4)
+        frac = Fraction(1, 2) + Fraction(4, 10)
+        frac = Fraction(3, 2) + 0.4)
         
         4. Умножение
         frac = Fraction(1, 2) * 3
@@ -30,11 +30,11 @@ def greet():
         5. Деление
         frac1 = Fraction(1, 2) / 3
         frac2 = Fraction(1, 2) // 3
-        Обратите внимание, frac1 == frac2,
-        т.е операторы ведут себя идентично для данного объекта
+        Обратите внимание, что frac1 == frac2,
+        т.е операторы / и // ведут себя идентично для данного объекта
         
         4. Упрощение
-        str( Fraction(3, 6).simplify() )
+        print( Fraction(3, 6).simplify() )
 
     Доступны большинство мат. операций для Fraction
     
@@ -45,6 +45,7 @@ def greet():
     *********************************************
     """
     return message
+
 
 if __name__ == '__main__':
     main()
