@@ -24,4 +24,6 @@ def count_combinations(n, k):
     return factorial(n) // factorial(n-k) * factorial(k)
 
 
-print(count_placements(2, 3))
+print(count_permutations(4))
+print(count_placements(4, 2))
+print(count_combinations(4, 2))
