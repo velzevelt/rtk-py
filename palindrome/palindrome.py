@@ -1,5 +1,6 @@
 import typing
 
+
 def is_palindrome(word: str) -> bool:
     reversed_word = word[::-1]
     return word == reversed_word
