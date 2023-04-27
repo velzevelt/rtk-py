@@ -21,9 +21,11 @@ def get_last_index(sentence: str, target_phrase: str) -> int:
 def compare(sentence_1: str, sentence_2: str, target_phrase: str) -> str | None:
     sentence_1_last_index = get_last_index(sentence_1, target_phrase)
     sentence_2_last_index = get_last_index(sentence_2, target_phrase)
-    if all( x == -1 for x in (sentence_1_last_index, sentence_2_last_index) ):
-        return None
-    elif sentence_1_last_index == sentence_2_last_index:
+    
+    # if all( x == -1 for x in (sentence_1_last_index, sentence_2_last_index) ):
+    #     return None
+    
+    if sentence_1_last_index == sentence_2_last_index:
         return None
 
     return sentence_1 if sentence_1_last_index > sentence_2_last_index else sentence_2
