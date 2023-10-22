@@ -98,26 +98,23 @@ class Fraction:
         return all(x >= 0 for x in frac) or all(x <= 0 for x in frac)
 
     def simplify(self):
-        if self.denominator % self.numerator == 0:
-            new_num = 1
-            new_denom = self.denominator // self.numerator
-            self.numerator = new_num
-            self.denominator = new_denom
-        elif self.numerator % self.denominator == 0:
-            new_num = self.numerator // self.denominator
-            new_denom = 1
-            self.numerator = new_num
-            self.denominator = new_denom
-        elif self.numerator % 2 == 0 and self.denominator % 2 == 0:
-            new_num = self.numerator // 2
-            new_denom = self.denominator // 2
-            while new_num % 2 == 0 and new_denom % 2 == 0:
-                new_num //= 2
-                new_denom //= 2
-            self.numerator = new_num
-            self.denominator = new_denom
-
+        def simplify_(numerator: int, denominator: int) -> Fraction:
+            if denominator % numerator == 0:
+                return Fraction(1, denominator // numerator) 
+            elif numerator % denominator == 0:
+                return Fraction(numerator // denominator, 1)
+            elif numerator % 2 == 0 and denominator % 2 == 0:
+                return simplify_(numerator // 2, denominator // 2)
+            elif numerator % 3 == 0 and denominator % 3 == 0:
+                return simplify_(numerator // 3, denominator // 3)
+            elif numerator % 5 == 0 and denominator % 5 == 0:
+                return simplify_(numerator // 5, denominator // 5)
+            else:
+                return Fraction(numerator, denominator)
+        
+        self = simplify_(self.numerator, self.denominator)
         return self
+
     
     def convert(obj):
         if not isinstance(obj, Fraction):
